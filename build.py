@@ -12,7 +12,7 @@ LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvl
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),
     "ai":     ("ИИ-агенты", "tag-ai"),
-    "edu":    ("Обучение управленцев", "tag-edu"),
+    "edu":    ("Обучение лидеров", "tag-edu"),
     "launch": ("Запуски продуктов", "tag-launch"),
 }
 
@@ -331,7 +331,6 @@ def page(title, body, desc="", depth=0):
       <a href="{pref}cases/index.html">Кейсы</a>
       <a href="{pref}index.html#book">Книга</a>
       <a href="{pref}index.html#about">Обо мне</a>
-      <a class="nav-cta" href="{pref}index.html#contact">Контакт</a>
     </nav>
   </div>
 </header>
@@ -469,8 +468,8 @@ def build_index():
 
 <section id="verify">
   <div class="wrap">
-    <span class="kicker">Цифровой след</span>
-    <h2>Проверить меня</h2>
+    <span class="kicker">Подтверждаемые источники</span>
+    <h2>Цифровой след</h2>
     <div class="verify-grid">
       <div class="verify-card">
         <h3>Выступления</h3>
@@ -525,16 +524,8 @@ def build_index():
 
 <section id="work" style="background:var(--paper)">
   <div class="wrap">
-    <span class="kicker">Формат сотрудничества</span>
-    <h2>Как строится работа</h2>
-    <div class="work-grid">
-      <div class="work-item"><span class="tick">✓</span>Рамочный договор</div>
-      <div class="work-item"><span class="tick">✓</span>Объём работ — в приложении к договору</div>
-      <div class="work-item"><span class="tick">✓</span>NDA при необходимости</div>
-      <div class="work-item"><span class="tick">✓</span>Закрывающие документы</div>
-      <div class="work-item"><span class="tick">✓</span>Работа с юридическими лицами</div>
-    </div>
-    <div class="security">
+    <span class="kicker">Безопасность данных</span>
+    <div class="security" style="margin-top:0">
       <h3>Безопасность данных при работе ИИ-агентов</h3>
       <p>Агенты работают на обезличенных данных. Информация, составляющая коммерческую тайну, маскируется до передачи в алгоритм — чувствительные данные не передаются алгоритму в открытом виде, что предотвращает риск их утечки.</p>
       <div class="layers">
@@ -562,7 +553,7 @@ def build_index():
           <ul>
             <li>Head of T&amp;D Sales: Avito, банк топ-20, международный ритейл</li>
             <li>Клиентская группа численностью 1&nbsp;800 сотрудников</li>
-            <li>Прямое взаимодействие с руководителями уровня CEO-1</li>
+            <li>Уровень взаимодействия: собственники, CEO и CEO-1</li>
             <li>Оптимизация расходов на обучение на 41%</li>
             <li>44% ставок закрыто внутренними кандидатами</li>
           </ul>
@@ -582,17 +573,6 @@ def build_index():
   </div>
 </section>
 
-<section class="contact" id="contact">
-  <div class="wrap">
-    <span class="kicker">Контакт</span>
-    <h2>Обсудить задачу</h2>
-    <p class="muted">Напишите в Telegram или на почту — отвечаю лично.</p>
-    <div class="links">
-      <a class="btn btn-primary" href="{TG_PERSONAL}">Telegram @Vikky_Duck</a>
-      <a class="btn btn-outline" href="mailto:{EMAIL}">{EMAIL}</a>
-    </div>
-  </div>
-</section>
 """
     return page("Виктория Уткина — продукты для точных и быстрых управленческих решений", body,
                 "Стратегические сессии, ИИ-агенты, обучение менеджеров и запуск образовательных продуктов — для собственников и топ-команд.", depth=0)
@@ -632,7 +612,7 @@ def build_cases_hub():
   </div>
 </section>
 """
-    return page("Кейсы — Виктория Уткина", body, "Кейсы: стратегические сессии, ИИ-агенты, обучение управленцев, запуски образовательных продуктов.", depth=1)
+    return page("Кейсы — Виктория Уткина", body, "Кейсы: стратегические сессии, ИИ-агенты, обучение лидеров, запуски образовательных продуктов.", depth=1)
 
 # ─────────────────────────────── страница кейса ───────────────────────────────
 def build_case(c):
@@ -744,8 +724,8 @@ def build_product(p):
 </section>
 <section class="cta-band">
   <div class="wrap">
-    <h2>Обсудить задачу</h2>
-    <p>Напишите в Telegram — обсудим контекст и решим, подходит ли этот формат.</p>
+    <h2>Напишите в Telegram</h2>
+    <p>Расскажите о контексте — решим, подходит ли этот формат.</p>
     <a class="btn btn-white" href="{TG_PERSONAL}">Написать в Telegram</a>
   </div>
 </section>
