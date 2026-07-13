@@ -3,25 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <title>Виктория Уткина — официальная страница</title>
 <meta name="description" content="Стратегические сессии, ИИ-агенты, обучение лидеров и запуск образовательных продуктов — для собственников и топ-команд.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap&subset=cyrillic" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=20260713h">
+<link rel="stylesheet" href="assets/css/style.css?v=20260713j">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%235b4dff'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='800' fill='white' text-anchor='middle'%3EВУ%3C/text%3E%3C/svg%3E">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
     <a class="logo" href="index.html">Виктория <span>Уткина</span></a>
-    <button class="burger" aria-label="Меню"><i></i></button>
     <nav class="nav">
       <a href="index.html#products">Продукты</a>
       <a href="cases/index.html">Кейсы</a>
       <a href="index.html#book">Книга</a>
       <a href="index.html#about">Обо мне</a>
     </nav>
+    <button class="theme-btn" id="theme-toggle" aria-label="Светлая или тёмная тема" title="Сменить тему">◐</button>
+    <button class="burger" aria-label="Меню"><i></i></button>
   </div>
 </header>
 
@@ -33,6 +35,12 @@
       <p class="role">
         <span class="role-for">Собственникам и топ-командам:</span> повышаю точность и скорость принятия стратегических решений, чтобы крупная ставка приносила прибыль, а не потерю инвестиций.
       </p>
+      <div class="scope">
+        <a class="chip" href="products/stratsessii.html">Стратегические сессии</a>
+        <a class="chip" href="products/ai-agenty.html">ИИ-агенты для топ-команд</a>
+        <a class="chip" href="products/obuchenie-menedzherov.html">Обучение лидеров</a>
+        <a class="chip" href="products/zapusk-produktov.html">Запуск продуктов</a>
+      </div>
       <a class="btn btn-primary" href="https://t.me/profi_rulit">Telegram-канал</a>
     </div>
     <div class="hero-figure">
@@ -59,12 +67,14 @@
 <section id="results">
   <div class="wrap">
     <h2>За каким результатом приходят</h2>
-    <div class="results-list">
-      <div class="result-item"><b>01</b><p><strong>Big Bet — крупная ставка.</strong> Инвестиция, выход на новый рынок или реструктуризация, когда цена ошибки слишком высока, чтобы принимать решение на основе ощущений</p></div>
-      <div class="result-item"><b>02</b><p><strong>Скорость и точность решений.</strong> Быстрые и обоснованные заключения: подготовка за часы вместо недель, и CEO принимает их с первого раза</p></div>
-      <div class="result-item"><b>03</b><p><strong>Новые рынки и сегменты.</strong> Пространство спроса, в котором пока нет конкурентов: новые группы клиентов и сценарии</p></div>
-      <div class="result-item"><b>04</b><p><strong>Рычаги роста без раздувания штата.</strong> Рост за счёт архитектуры и приоритетов, а не найма</p></div>
-      <div class="result-item"><b>05</b><p><strong>Быстрое вхождение в новую роль.</strong> Инструменты управления процессами на уровне крупных финансовых показателей и ROI</p></div>
+    <div class="probs">
+      <div class="prob"><span class="mk">→</span><div><b>Big Bet — крупная ставка</b><p>Инвестиция, выход на новый рынок или реструктуризация, когда цена ошибки слишком высока для решения на ощущениях</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Скорость и точность решений</b><p>Быстрые и обоснованные заключения: подготовка за часы вместо недель, и CEO принимает их с первого раза</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Новые рынки и сегменты</b><p>Пространство спроса, в котором пока нет конкурентов: новые группы клиентов и сценарии</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Рычаги роста без раздувания штата</b><p>Проектирование системы, в которой каждый элемент (менеджеры, каналы и методология) нацелен на окупаемость инвестиций</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Быстрое вхождение в новую роль</b><p>Инструменты управления процессами на уровне крупных финансовых показателей и ROI</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Системный подход вместо латания дыр</b><p>Отказ от тактики «латания дыр» в пользу системного подхода к управлению процессами</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Управление на основе данных</b><p>Переход от ручного управления к управлению на основе данных</p></div></div>
     </div>
   </div>
 </section>
@@ -279,7 +289,7 @@
     </ul>
   </div>
 </footer>
-<script src="assets/js/site.js?v=20260713h"></script>
+<script src="assets/js/site.js?v=20260713j"></script>
 <!-- Yandex.Metrika -->
 <script type="text/javascript">
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

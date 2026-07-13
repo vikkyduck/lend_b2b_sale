@@ -8,7 +8,7 @@ TG_CHANNEL = "https://t.me/profi_rulit"
 TG_PERSONAL = "https://t.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
-ASSET_VER = "20260713h"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
+ASSET_VER = "20260713j"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
 
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),
@@ -320,6 +320,7 @@ def page(title, body, desc="", depth=0):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){{try{{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -332,13 +333,14 @@ def page(title, body, desc="", depth=0):
 <header class="site-header">
   <div class="wrap">
     <a class="logo" href="{pref}index.html">Виктория <span>Уткина</span></a>
-    <button class="burger" aria-label="Меню"><i></i></button>
     <nav class="nav">
       <a href="{pref}index.html#products">Продукты</a>
       <a href="{pref}cases/index.html">Кейсы</a>
       <a href="{pref}index.html#book">Книга</a>
       <a href="{pref}index.html#about">Обо мне</a>
     </nav>
+    <button class="theme-btn" id="theme-toggle" aria-label="Светлая или тёмная тема" title="Сменить тему">◐</button>
+    <button class="burger" aria-label="Меню"><i></i></button>
   </div>
 </header>
 {body}
@@ -404,6 +406,12 @@ def build_index():
       <p class="role">
         <span class="role-for">Собственникам и топ-командам:</span> повышаю точность и скорость принятия стратегических решений, чтобы крупная ставка приносила прибыль, а не потерю инвестиций.
       </p>
+      <div class="scope">
+        <a class="chip" href="products/stratsessii.html">Стратегические сессии</a>
+        <a class="chip" href="products/ai-agenty.html">ИИ-агенты для топ-команд</a>
+        <a class="chip" href="products/obuchenie-menedzherov.html">Обучение лидеров</a>
+        <a class="chip" href="products/zapusk-produktov.html">Запуск продуктов</a>
+      </div>
       <a class="btn btn-primary" href="{TG_CHANNEL}">Telegram-канал</a>
     </div>
     <div class="hero-figure">
@@ -430,12 +438,14 @@ def build_index():
 <section id="results">
   <div class="wrap">
     <h2>За каким результатом приходят</h2>
-    <div class="results-list">
-      <div class="result-item"><b>01</b><p><strong>Big Bet — крупная ставка.</strong> Инвестиция, выход на новый рынок или реструктуризация, когда цена ошибки слишком высока, чтобы принимать решение на основе ощущений</p></div>
-      <div class="result-item"><b>02</b><p><strong>Скорость и точность решений.</strong> Быстрые и обоснованные заключения: подготовка за часы вместо недель, и CEO принимает их с первого раза</p></div>
-      <div class="result-item"><b>03</b><p><strong>Новые рынки и сегменты.</strong> Пространство спроса, в котором пока нет конкурентов: новые группы клиентов и сценарии</p></div>
-      <div class="result-item"><b>04</b><p><strong>Рычаги роста без раздувания штата.</strong> Рост за счёт архитектуры и приоритетов, а не найма</p></div>
-      <div class="result-item"><b>05</b><p><strong>Быстрое вхождение в новую роль.</strong> Инструменты управления процессами на уровне крупных финансовых показателей и ROI</p></div>
+    <div class="probs">
+      <div class="prob"><span class="mk">→</span><div><b>Big Bet — крупная ставка</b><p>Инвестиция, выход на новый рынок или реструктуризация, когда цена ошибки слишком высока для решения на ощущениях</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Скорость и точность решений</b><p>Быстрые и обоснованные заключения: подготовка за часы вместо недель, и CEO принимает их с первого раза</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Новые рынки и сегменты</b><p>Пространство спроса, в котором пока нет конкурентов: новые группы клиентов и сценарии</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Рычаги роста без раздувания штата</b><p>Проектирование системы, в которой каждый элемент (менеджеры, каналы и методология) нацелен на окупаемость инвестиций</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Быстрое вхождение в новую роль</b><p>Инструменты управления процессами на уровне крупных финансовых показателей и ROI</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Системный подход вместо латания дыр</b><p>Отказ от тактики «латания дыр» в пользу системного подхода к управлению процессами</p></div></div>
+      <div class="prob"><span class="mk">→</span><div><b>Управление на основе данных</b><p>Переход от ручного управления к управлению на основе данных</p></div></div>
     </div>
   </div>
 </section>
@@ -721,11 +731,33 @@ def build_product(p):
     return page(f"{p['name']} — Виктория Уткина", body, p["short"], depth=1)
 
 # ─────────────────────────────── JS ───────────────────────────────
-SITE_JS = """// меню + фильтр кейсов
+SITE_JS = """// меню + фильтр кейсов + тема + reveal
 document.addEventListener('DOMContentLoaded', function () {
   var burger = document.querySelector('.burger');
   var nav = document.querySelector('.nav');
   if (burger) burger.addEventListener('click', function () { nav.classList.toggle('open'); });
+
+  // переключатель темы (сохраняем выбор)
+  var tt = document.getElementById('theme-toggle');
+  if (tt) tt.addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var sysDark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+    var next = cur ? (cur === 'dark' ? 'light' : 'dark') : (sysDark ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  // reveal on scroll (без JS контент виден — класс добавляем скриптом)
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    var targets = document.querySelectorAll('.probs,.products-grid,.cases-grid,.book-grid,.verify-grid,.about-grid,.deliver-grid,.result-numbers,.steps');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    targets.forEach(function (el) {
+      if (el.getBoundingClientRect().top < innerHeight) { el.classList.add('in'); return; }
+      el.classList.add('rv'); io.observe(el);
+    });
+  }
 
   var bar = document.querySelector('.filter-bar');
   if (bar) {
