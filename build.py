@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """Генератор статического сайта vi-utkina.ru (хаб по ТЗ)."""
-import os, html
+import os, html, re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TG_CHANNEL = "https://t.me/profi_rulit"
@@ -27,9 +27,9 @@ CASES = [
       client_task="«Нужен первичный скоринг инвестиционных идей до того, как они выносятся на инвестиционный комитет: комитет должен рассматривать только проработанные и жизнеспособные инициативы».",
       steps=[
         ("Зафиксировали критерии компании","Оценка идеи проводится по десяти критериям, три из которых являются критическими: несоответствие любому из них останавливает идею независимо от остальных оценок."),
-        ("Настроили ИИ-агента на логику компании","Агент собирает данные по рынку и аналогам, рассчитывает экономику и проводит скоринг по критериям именно этой компании — а не по универсальным шаблонам."),
-        ("Прогнали реальные инициативы","Через скоринг прошли действующие идеи компании, чтобы определить валидность заключений ИИ-агента: аналитики уже вынесли своё профессиональное суждение по этим инициативам, и важно было увидеть, насколько скоринг ИИ-агента с ним совпадает."),
-        ("Сформулировали вердикты с условиями возврата к гипотезе","Агент не закрывает идеи окончательно: инициативы получают вердикт «лист ожидания» с чётко сформулированными условиями, при которых идея снова становится жизнеспособной."),
+        ("Настроили ИИ-агента под логику компании","Агент собирает данные по рынку и аналогам, рассчитывает экономику и проводит скоринг по критериям именно этой компании — а не по универсальным шаблонам"),
+        ("Прогнали реальные инициативы","Через скоринг прошли действующие идеи компании, чтобы определить валидность заключений ИИ-агента: аналитики уже вынесли своё профессиональное суждение по этим инициативам, и важно было увидеть, насколько скоринг ИИ-агента с ним совпадает"),
+        ("Сформулировали вердикты с условиями возврата к гипотезе","Агент распределяет идеи в одну из трёх категорий: «На валидацию» / «Отсеять (лист ожидания)» / «Отсеять (безнадёжен)». Если инициатива получает вердикт «лист ожидания», ИИ-агент прописывает чётко сформулированные условия, при которых идея снова становится жизнеспособной"),
         ("Автоматизировали итоговое заключение","Итоговое заключение по каждой идее формируется автоматически — комитет получает готовый документ с оценками, рисками и условиями возврата к рассмотрению."),
       ],
       results=[("10–15 минут","на первичную оценку идеи вместо нескольких дней"),
@@ -304,6 +304,11 @@ HOME_ORDER = ["urbantech","seven-agents","avito-partnerstva","vkusvill","digital
 # ─────────────────────────────── шаблоны ───────────────────────────────
 def esc(s): return html.escape(s, quote=False)
 
+def nd(s):
+    """Убрать одну завершающую точку (буллиты/утверждения без точки в конце). Многоточие и кавычки не трогаем."""
+    s = s.rstrip()
+    return s[:-1] if s.endswith('.') else s
+
 def tag_html(key):
     name, cls = TAGS[key]
     return f'<span class="tag {cls}">{name}</span>'
@@ -386,7 +391,7 @@ def build_index():
     prod_cards = "\n".join(f"""      <a class="product-card" href="products/{p['slug']}.html">
         <span class="num">{p['num']}</span>
         <h3>{esc(p['name'])}</h3>
-        <p>{esc(p['short'])}</p>
+        <p>{esc(nd(p['short']))}</p>
         <span class="go">Подробнее о продукте →</span>
       </a>""" for p in PRODUCTS)
 
@@ -427,11 +432,11 @@ def build_index():
   <div class="wrap">
     <h2>За каким результатом приходят</h2>
     <div class="results-list">
-      <div class="result-item"><b>01</b><p><strong>Big Bet — крупная ставка.</strong> Инвестиция, выход на новый рынок или реструктуризация, когда цена ошибки слишком высока, чтобы принимать решение на основе ощущений.</p></div>
-      <div class="result-item"><b>02</b><p><strong>Скорость и точность решений.</strong> Быстрые и обоснованные заключения: подготовка за часы вместо недель, и CEO принимает их с первого раза.</p></div>
-      <div class="result-item"><b>03</b><p><strong>Новые рынки и сегменты.</strong> Пространство спроса, в котором пока нет конкурентов: новые группы клиентов и сценарии.</p></div>
-      <div class="result-item"><b>04</b><p><strong>Рычаги роста без раздувания штата.</strong> Рост за счёт архитектуры и приоритетов, а не найма.</p></div>
-      <div class="result-item"><b>05</b><p><strong>Быстрое вхождение в новую роль.</strong> Инструменты управления процессами на уровне крупных финансовых показателей и ROI.</p></div>
+      <div class="result-item"><b>01</b><p><strong>Big Bet — крупная ставка.</strong> Инвестиция, выход на новый рынок или реструктуризация, когда цена ошибки слишком высока, чтобы принимать решение на основе ощущений</p></div>
+      <div class="result-item"><b>02</b><p><strong>Скорость и точность решений.</strong> Быстрые и обоснованные заключения: подготовка за часы вместо недель, и CEO принимает их с первого раза</p></div>
+      <div class="result-item"><b>03</b><p><strong>Новые рынки и сегменты.</strong> Пространство спроса, в котором пока нет конкурентов: новые группы клиентов и сценарии</p></div>
+      <div class="result-item"><b>04</b><p><strong>Рычаги роста без раздувания штата.</strong> Рост за счёт архитектуры и приоритетов, а не найма</p></div>
+      <div class="result-item"><b>05</b><p><strong>Быстрое вхождение в новую роль.</strong> Инструменты управления процессами на уровне крупных финансовых показателей и ROI</p></div>
     </div>
   </div>
 </section>
@@ -587,8 +592,8 @@ def build_cases_hub():
         cards.append(f"""      <div class="case-card" data-tag="{c['tag']}">
         {tag_html(c['tag'])}
         <span class="client">{esc(c['client'])}</span>
-        <p class="task">{esc(c['task'])}</p>
-        <div class="figure">{esc(c['figure'])}<small>{esc(c['figure_note'])}</small></div>
+        <p class="task">{esc(nd(c['task']))}</p>
+        <div class="figure">{esc(c['figure'])}<small>{esc(nd(c['figure_note']))}</small></div>
         <a class="go" href="{c['slug']}.html">Смотреть кейс →</a>
       </div>""")
     cards_html = "\n".join(cards)
@@ -614,9 +619,9 @@ def build_cases_hub():
 def build_case(c):
     by_slug = {x["slug"]: x for x in CASES}
     meta = "\n".join(f'      <div class="meta-row"><b>{esc(k)}</b><span>{esc(v)}</span></div>' for k, v in c["hero_meta"].items())
-    steps = "\n".join(f"""      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(t)}</h3><p>{esc(d)}</p></div></div>"""
+    steps = "\n".join(f"""      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(t)}</h3><p>{esc(nd(d))}</p></div></div>"""
                       for i, (t, d) in enumerate(c["steps"]))
-    nums = "\n".join(f'      <div class="rn"><b>{esc(v)}</b><span>{esc(l)}</span></div>' for v, l in c["results"])
+    nums = "\n".join(f'      <div class="rn"><b>{esc(v)}</b><span>{esc(nd(l))}</span></div>' for v, l in c["results"])
     related = "\n".join(f"""      <a class="case-tile" href="{by_slug[s]['slug']}.html">{tag_html(by_slug[s]['tag'])}<span class="client">{esc(by_slug[s]['client'])}</span><span class="arrow">→</span></a>"""
                         for s in c.get("related", []) if s in by_slug)
     extra = f'<p style="margin-top:18px">{esc(c["extra"])}</p>' if c.get("extra") else ""
@@ -628,8 +633,8 @@ def build_case(c):
     if c.get("shot"):
         src, cap = c["shot"]
         shot_html = f'''    <figure class="shot">
-      <img src="{src}" alt="{esc(cap)}" loading="lazy">
-      <figcaption>{esc(cap)}</figcaption>
+      <img src="{src}" alt="{esc(nd(cap))}" loading="lazy">
+      <figcaption>{esc(nd(cap))}</figcaption>
     </figure>'''
     body = f"""
 <section class="case-hero">
@@ -674,9 +679,9 @@ def build_case(c):
 
 # ─────────────────────────────── страница продукта ───────────────────────────────
 def build_product(p):
-    stages = "\n".join(f"""      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(t)}</h3><p>{esc(d)}</p></div></div>"""
+    stages = "\n".join(f"""      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(t)}</h3><p>{esc(nd(d))}</p></div></div>"""
                        for i, (t, d) in enumerate(p["stages"]))
-    deliver = "\n".join(f'      <div class="deliver"><b>{esc(t)}</b><p>{esc(d)}</p></div>' for t, d in p["deliver"])
+    deliver = "\n".join(f'      <div class="deliver"><b>{esc(t)}</b><p>{esc(nd(d))}</p></div>' for t, d in p["deliver"])
     rel_cases = [c for c in CASES if (p["slug"] == "stratsessii" and c["tag"] == "strat")
                  or (p["slug"] == "ai-agenty" and c["tag"] == "ai")
                  or (p["slug"] == "obuchenie-menedzherov" and c["tag"] == "edu")
@@ -747,6 +752,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 # ─────────────────────────────── сборка ───────────────────────────────
 def write(path, content):
+    # глобально: точка в конце буллита не нужна
+    content = re.sub(r'\.(\s*</li>)', r'\1', content)
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w", encoding="utf-8") as f:
