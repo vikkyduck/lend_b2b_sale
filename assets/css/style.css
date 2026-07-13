@@ -127,6 +127,9 @@ h2{font-size:clamp(26px,3.6vw,40px);margin-bottom:28px}
 .case-body{max-width:820px}
 .case-body h2{font-size:24px;margin:44px 0 16px}
 .case-body ul,.case-body ol{padding-left:22px;display:grid;gap:8px;margin:12px 0}
+.shot{margin:34px 0}
+.shot img{width:100%;border-radius:16px;border:1px solid #e7e4f4;box-shadow:0 8px 30px rgba(23,19,49,.08)}
+.shot figcaption{font-size:13.5px;color:var(--ink-soft);margin-top:12px;line-height:1.5}
 .case-quote{background:var(--paper);border-left:5px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:26px 30px;margin:40px 0;font-size:17px}
 .case-quote .author{margin-top:12px;font-weight:700;font-size:15px;color:var(--ink-soft)}
 .result-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:20px 0}

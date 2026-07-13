@@ -8,7 +8,7 @@ TG_CHANNEL = "https://t.me/profi_rulit"
 TG_PERSONAL = "https://t.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
-ASSET_VER = "20260713f"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
+ASSET_VER = "20260713g"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
 
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),
@@ -36,6 +36,7 @@ CASES = [
                ("7 узлов","специализированных ИИ-ассистентов в одном оркестраторе"),
                ("1–2 страницы","мини-заключение по каждой идее в едином формате")],
       how_counted="Время оценки — фактический прогон агента на реальных идеях заказчика (10–15 минут на идею) против прежнего процесса ручной проверки (несколько дней). Конкретные суммы и параметры рассматривавшихся инициатив не раскрываются — коммерческая тайна.",
+      shot=("../assets/img/case-urbantech/report-example.jpg","Реальное заключение агента: вердикт и оценка «Да/Нет» по 10 критериям. Название идеи, формулировки критериев и обоснования скрыты — коммерческая тайна"),
       cta_extra=("Полный разбор кейса","/cases/urbantech-full"),
       related=["seven-agents","avito-partnerstva"]),
 
@@ -623,6 +624,13 @@ def build_case(c):
     if c.get("cta_extra"):
         label, href = c["cta_extra"]
         cta_extra = f'<p style="margin-top:24px"><a class="btn btn-outline" href="{href}">{esc(label)} →</a></p>'
+    shot_html = ""
+    if c.get("shot"):
+        src, cap = c["shot"]
+        shot_html = f'''    <figure class="shot">
+      <img src="{src}" alt="{esc(cap)}" loading="lazy">
+      <figcaption>{esc(cap)}</figcaption>
+    </figure>'''
     body = f"""
 <section class="case-hero">
   <div class="wrap">
@@ -643,6 +651,7 @@ def build_case(c):
     <div class="steps">
 {steps}
     </div>
+{shot_html}
     <h2>Результат</h2>
     <div class="result-numbers">
 {nums}
@@ -798,9 +807,20 @@ def build_urbantech_full():
 
     <h2>Решение: ИИ-агент</h2>
     <p>Для пользователя агент — это одна кнопка. Внутри работает оркестратор, который последовательно запускает цепочку из 7 специализированных ассистентов; каждый решает свою задачу и передаёт результат следующему.</p>
+    <figure class="shot">
+      <img src="../assets/img/case-urbantech/app-ui.jpg" alt="Интерфейс ИИ-агента первичного скоринга УрбанТех" loading="lazy">
+      <figcaption>Интерфейс агента: описание идеи текстом или файлом — и одна кнопка «Оценить идею»</figcaption>
+    </figure>
     <div class="steps" style="margin-top:18px">
 {nodes_html}
     </div>
+
+    <h2>Пример заключения</h2>
+    <p>Так выглядит итоговый артефакт — мини-заключение по идее: вердикт, счёт по критериям и обоснование по каждому пункту.</p>
+    <figure class="shot">
+      <img src="../assets/img/case-urbantech/report-example.jpg" alt="Пример заключения ИИ-агента: вердикт и оценка по 10 критериям" loading="lazy">
+      <figcaption>Реальное заключение агента. Название идеи, формулировки критериев и обоснования скрыты — коммерческая тайна; вердикт и оценка «Да/Нет» по 10 критериям — как в оригинале</figcaption>
+    </figure>
 
     <h2>Минимизация галлюцинаций ИИ</h2>
     <ul>
