@@ -8,7 +8,7 @@ TG_CHANNEL = "https://t.me/profi_rulit"
 TG_PERSONAL = "https://t.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
-ASSET_VER = "20260713e"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
+ASSET_VER = "20260713f"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
 
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),
@@ -612,7 +612,7 @@ def build_cases_hub():
 # ─────────────────────────────── страница кейса ───────────────────────────────
 def build_case(c):
     by_slug = {x["slug"]: x for x in CASES}
-    meta = "\n".join(f'      <div><b>{esc(k)}</b>{esc(v)}</div>' for k, v in c["hero_meta"].items())
+    meta = "\n".join(f'      <div class="meta-row"><b>{esc(k)}</b><span>{esc(v)}</span></div>' for k, v in c["hero_meta"].items())
     steps = "\n".join(f"""      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(t)}</h3><p>{esc(d)}</p></div></div>"""
                       for i, (t, d) in enumerate(c["steps"]))
     nums = "\n".join(f'      <div class="rn"><b>{esc(v)}</b><span>{esc(l)}</span></div>' for v, l in c["results"])
@@ -763,9 +763,9 @@ def build_urbantech_full():
     {tag_html('ai')}
     <h1>ИИ-агент первичного скоринга: оценивает входящую бизнес-идею за 10–15 минут вместо недель — без потери качества анализа</h1>
     <div class="case-meta">
-      <div><b>Клиент</b>ГК «УрбанТех»</div>
-      <div><b>Продукт</b>ИИ-агент первичного скоринга инвестиционных идей</div>
-      <div><b>Роль</b>Архитектура агента, сборка, передача решения в контур компании</div>
+      <div class="meta-row"><b>Клиент</b><span>ГК «УрбанТех»</span></div>
+      <div class="meta-row"><b>Продукт</b><span>ИИ-агент первичного скоринга инвестиционных идей</span></div>
+      <div class="meta-row"><b>Роль</b><span>Архитектура агента, сборка, передача решения в контур компании</span></div>
     </div>
   </div>
 </section>
