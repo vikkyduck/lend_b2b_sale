@@ -55,7 +55,7 @@ h2{font-size:clamp(26px,3.6vw,40px);margin-bottom:28px}
 .hero-grid>div:first-child{padding-bottom:56px}
 .hero h1{font-size:clamp(32px,4.4vw,52px);margin:8px 0 22px;max-width:660px}
 .hero .role{font-size:clamp(17px,1.85vw,20px);font-weight:500;color:var(--ink);line-height:1.5;margin-bottom:22px;max-width:580px}
-.hero .role .role-for{display:block;color:var(--accent);font-weight:800;margin-bottom:8px}
+.hero .role .role-for{display:block;color:var(--accent);font-weight:700;margin-bottom:8px}
 .hero .sub{max-width:560px;color:var(--ink-soft);font-size:15.5px;margin-bottom:30px}
 .hero-figure{position:relative;min-height:520px;align-self:stretch}
 .hero-figure img{position:absolute;bottom:0;right:0;max-height:640px;width:auto;
