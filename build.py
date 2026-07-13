@@ -340,7 +340,7 @@ def page(title, body, desc="", depth=0):
     <div class="fin">
       <b style="color:#fff">ИП Уткина Виктория Викторовна</b><br>
       ИНН 771586055972<br>
-      <a href="mailto:{EMAIL}">{EMAIL}</a> · <a href="{TG_PERSONAL}">Telegram @Vikky_Duck</a>
+      <a href="mailto:{EMAIL}">{EMAIL}</a>
     </div>
     <ul>
       <li><a href="{pref}personal-data">Политика конфиденциальности</a></li>
@@ -602,13 +602,6 @@ def build_cases_hub():
     </div>
   </div>
 </section>
-<section class="cta-band">
-  <div class="wrap">
-    <h2>Похожая задача?</h2>
-    <p>Напишите в Telegram — обсудим контекст и решим, какой формат даст результат.</p>
-    <a class="btn btn-white" href="{TG_PERSONAL}">Написать в Telegram</a>
-  </div>
-</section>
 """
     return page("Кейсы — Виктория Уткина", body, "Кейсы: стратегические сессии, ИИ-агенты, обучение лидеров, запуски образовательных продуктов.", depth=1)
 
@@ -663,13 +656,6 @@ def build_case(c):
     </div>
   </div>
 </section>
-<section class="cta-band">
-  <div class="wrap">
-    <h2>Похожая задача?</h2>
-    <p>Напишите в Telegram — обсудим контекст и решим, какой формат даст результат.</p>
-    <a class="btn btn-white" href="{TG_PERSONAL}">Написать в Telegram</a>
-  </div>
-</section>
 """
     return page(f"{c['client']} — кейс — Виктория Уткина", body, c["task"], depth=1)
 
@@ -718,13 +704,6 @@ def build_product(p):
     <div class="cases-grid" style="grid-template-columns:repeat(3,1fr)">
 {rel}
     </div>
-  </div>
-</section>
-<section class="cta-band">
-  <div class="wrap">
-    <h2>Напишите в Telegram</h2>
-    <p>Расскажите о контексте — решим, подходит ли этот формат.</p>
-    <a class="btn btn-white" href="{TG_PERSONAL}">Написать в Telegram</a>
   </div>
 </section>
 """
