@@ -8,7 +8,7 @@ TG_CHANNEL = "https://t.me/profi_rulit"
 TG_PERSONAL = "https://t.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
-ASSET_VER = "20260713b"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
+ASSET_VER = "20260713c"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
 
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),

@@ -50,15 +50,15 @@ h2{font-size:clamp(26px,3.6vw,40px);margin-bottom:28px}
 .burger i::after{top:7px}
 
 /* ───────── hero ───────── */
-.hero{background:radial-gradient(1200px 600px at 85% -10%,rgba(91,77,255,.14),transparent 60%),var(--white);padding:64px 0 0;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:end}
-.hero-grid>div:first-child{padding-bottom:56px}
-.hero h1{font-size:clamp(34px,4.6vw,54px);margin:10px 0 18px}
-.hero .role{font-size:clamp(18px,2vw,22px);font-weight:700;color:var(--accent-ink);margin-bottom:18px;max-width:640px}
-.hero .role .role-for{display:block;color:var(--accent);margin-top:4px}
-.hero .sub{max-width:600px;color:var(--ink-soft);font-size:16px;margin-bottom:30px}
-.hero-figure{position:relative;min-height:380px;align-self:stretch}
-.hero-figure img{position:absolute;bottom:0;right:0;max-height:480px;width:auto;
+.hero{background:radial-gradient(1200px 600px at 82% -10%,rgba(91,77,255,.14),transparent 58%),var(--white);padding:56px 0 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:end}
+.hero-grid>div:first-child{padding-bottom:52px}
+.hero h1{font-size:clamp(32px,4.4vw,50px);margin:8px 0 22px;max-width:640px}
+.hero .role{font-size:clamp(17px,1.85vw,20px);font-weight:500;color:var(--ink);line-height:1.5;margin-bottom:22px;max-width:560px}
+.hero .role .role-for{display:block;color:var(--accent);font-weight:800;margin-bottom:8px}
+.hero .sub{max-width:540px;color:var(--ink-soft);font-size:15.5px;margin-bottom:30px}
+.hero-figure{position:relative;min-height:440px;align-self:stretch}
+.hero-figure img{position:absolute;bottom:0;right:0;max-height:560px;width:auto;
   -webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent 99%),linear-gradient(to right,transparent 0,#000 12%,#000 92%,transparent 100%);
   mask-image:linear-gradient(to bottom,#000 82%,transparent 99%),linear-gradient(to right,transparent 0,#000 12%,#000 92%,transparent 100%);
   -webkit-mask-composite:source-in;mask-composite:intersect}
