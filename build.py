@@ -8,7 +8,7 @@ TG_CHANNEL = "https://t.me/profi_rulit"
 TG_PERSONAL = "https://t.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
-ASSET_VER = "20260713g"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
+ASSET_VER = "20260713h"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
 
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),
@@ -404,7 +404,6 @@ def build_index():
       <p class="role">
         <span class="role-for">Собственникам и топ-командам:</span> повышаю точность и скорость принятия стратегических решений, чтобы крупная ставка приносила прибыль, а не потерю инвестиций.
       </p>
-      <p class="sub">Владелица агентства «Без Воды». 20 лет в сфере обучения взрослых. С 2012 года — корпоративный управленческий опыт: работа с клиентами, управление продуктом, командой и бюджетами.</p>
       <a class="btn btn-primary" href="{TG_CHANNEL}">Telegram-канал</a>
     </div>
     <div class="hero-figure">
@@ -552,10 +551,7 @@ def build_index():
     <div class="about-grid">
       <img class="about-photo" src="assets/img/vika-photo.jpg" alt="Виктория Уткина">
       <div>
-        <div class="about-block">
-          <h3>Владелица тренинговой компании «Без Воды»</h3>
-          <p class="muted">Клиенты компании: Ozon, Danone, МТС, JTI, Газпромбанк, Лента, Leroy Merlin, Контур и другие. <a class="ext" href="https://withoutwater.ru">withoutwater.ru</a></p>
-        </div>
+        <p class="about-intro">Владелица агентства «Без Воды» (<a class="ext" href="https://withoutwater.ru">withoutwater.ru</a>). 20 лет в сфере обучения взрослых. С 2012 года — корпоративный управленческий опыт: работа с клиентами, управление продуктом, командой и бюджетами.</p>
         <div class="about-block">
           <h3>Корпоративный управленческий опыт</h3>
           <ul>
@@ -572,9 +568,6 @@ def build_index():
           <div class="stat"><b>138</b><span>разработанных программ</span></div>
           <div class="stat"><b>1 400+</b><span>обученных методистов</span></div>
           <div class="stat"><b>450+</b><span>распакованных экспертов</span></div>
-        </div>
-        <div class="career-line">
-          <b>Карьерный трек:</b> ЭКОПСИ Консалтинг, бизнес-тренер (2007–2008) → SUN InBev → РОЛЬФ → GIS → Castorama → Хоум Кредит Банк → Avito (2022–2025)
         </div>
       </div>
     </div>

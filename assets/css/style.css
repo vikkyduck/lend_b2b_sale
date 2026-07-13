@@ -193,6 +193,7 @@ h2{font-size:clamp(26px,3.6vw,40px);margin-bottom:28px}
 .about{background:var(--paper)}
 .about-grid{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start}
 .about-photo{border-radius:var(--radius);filter:grayscale(1);box-shadow:var(--shadow)}
+.about-intro{font-size:17px;color:var(--ink);max-width:640px;line-height:1.6;margin-bottom:30px}
 .about-block{margin-bottom:30px}
 .about-block h3{font-size:19px;margin-bottom:10px}
 .about-block ul{list-style:none;display:grid;gap:8px}
