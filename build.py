@@ -4,8 +4,8 @@
 import os, html, re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-TG_CHANNEL = "https://t.me/profi_rulit"
-TG_PERSONAL = "https://t.me/Vikky_Duck"
+TG_CHANNEL = "https://telegram.me/profi_rulit"
+TG_PERSONAL = "https://telegram.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
 ASSET_VER = "20260713j"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
