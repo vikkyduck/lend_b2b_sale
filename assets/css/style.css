@@ -6,7 +6,7 @@
   --accent-soft:#eceafd; --accent-ink:#241d63;
   --panel:#14112e; --panel-ink:#f4f2fb; --panel-soft:#b7b2d0; --panel-line:rgba(255,255,255,.10);
   --logo-ink:#9b97ad; --ok:#0e9f6e;
-  --tag-strat:#5b4dff; --tag-ai:#0ea5b7; --tag-edu:#e0762f; --tag-launch:#c2378f;
+  --tag-strat:#5b4dff; --tag-ai:#0ea5b7; --tag-edu:#e0762f;
   --shadow:0 14px 44px rgba(20,17,46,.10);
   --header-bg:rgba(255,255,255,.9);
   --radius:20px; --maxw:1280px;
@@ -114,7 +114,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .prob p{color:var(--ink-soft);font-size:15.5px}
 
 /* ───────── продукты ───────── */
-.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .product-card{background:var(--paper);border:1px solid transparent;border-radius:22px;padding:34px;display:flex;flex-direction:column;gap:13px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s;color:var(--ink)}
 .product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);text-decoration:none;border-color:var(--line);background:var(--card)}
 .product-card .num{width:46px;height:46px;border-radius:13px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;letter-spacing:0}
@@ -144,7 +144,6 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .tag-strat{background:var(--tag-strat)}
 .tag-ai{background:var(--tag-ai)}
 .tag-edu{background:var(--tag-edu)}
-.tag-launch{background:var(--tag-launch)}
 
 /* ───────── кейсы: хаб /cases ───────── */
 .filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 34px}
