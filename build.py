@@ -8,7 +8,7 @@ TG_CHANNEL = "https://telegram.me/profi_rulit"
 TG_PERSONAL = "https://telegram.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
-ASSET_VER = "20260726a"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
+ASSET_VER = "20260726b"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
 
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),
@@ -686,16 +686,99 @@ document.addEventListener('DOMContentLoaded', function () {
 """
 
 # ─────────────────────────────── сборка ───────────────────────────────
-def write(path, content):
-    # глобально: точка в конце буллита не нужна
-    content = re.sub(r'\.(\s*</li>)', r'\1', content)
+def write(path, content, strip_periods=True):
+    # глобально: точка в конце буллита не нужна (кроме дословных страниц)
+    if strip_periods:
+        content = re.sub(r'\.(\s*</li>)', r'\1', content)
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w", encoding="utf-8") as f:
         f.write(content)
     print("  +", path)
 
-# ─────────────────── подробный разбор УрбанТех (отдельная страница) ───────────────────
+# ─────────────────── «Личный номер года»: 9 дословных страниц из content/god/ ───────────────────
+def md_inline(s):
+    s = esc(s)
+    s = re.sub(r'\*\*([^*]+)\*\*', r'<b>\1</b>', s)
+    s = re.sub(r'(?<!\*)\*(?!\*)([^*\n]+)\*(?!\*)', r'<i>\1</i>', s)
+    return s
+
+def md_to_html(md):
+    lines = md.split("\n")
+    out, i = [], 0
+    def is_blank(l): return not l.strip()
+    while i < len(lines):
+        l = lines[i]
+        if is_blank(l):
+            i += 1; continue
+        if l.startswith("# "):
+            out.append(f"<h1>{md_inline(l[2:].strip())}</h1>"); i += 1; continue
+        if l.lstrip().startswith("|"):
+            rows = []
+            while i < len(lines) and lines[i].lstrip().startswith("|"):
+                cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
+                rows.append(cells); i += 1
+            rows = [r for r in rows if not all(re.fullmatch(r':?-+:?', c or '-') for c in r)]  # строка выравнивания
+            rows = [r for r in rows if any(c for c in r)]                                      # пустая шапка
+            body = "\n".join("<tr>" + "".join(f"<td>{md_inline(c)}</td>" for c in r) + "</tr>" for r in rows)
+            out.append(f'<div class="tbl-wrap"><table>{body}</table></div>'); continue
+        m = re.match(r'^(\s*)-\s+(.*)$', l)
+        if m:
+            items, stack = [], []  # плоский разбор двух уровней
+            out.append("<ul>")
+            depth_prev = 0
+            while i < len(lines):
+                mm = re.match(r'^(\s*)-\s+(.*)$', lines[i])
+                if not mm:
+                    if is_blank(lines[i]):
+                        # пустая строка не рвёт список, если дальше снова пункт
+                        j = i
+                        while j < len(lines) and is_blank(lines[j]): j += 1
+                        if j < len(lines) and re.match(r'^\s*-\s+', lines[j]):
+                            i = j; continue
+                    break
+                depth = 1 if len(mm.group(1)) > 3 else 0
+                if depth > depth_prev: out.append("<ul>")
+                if depth < depth_prev: out.append("</ul>")
+                out.append(f"<li>{md_inline(mm.group(2))}</li>")
+                depth_prev = depth; i += 1
+            if depth_prev: out.append("</ul>")
+            out.append("</ul>"); continue
+        m = re.match(r'^\s*(\d+)\.\s+(.*)$', l)
+        if m:
+            out.append(f'<ol start="{m.group(1)}">')
+            while i < len(lines):
+                mm = re.match(r'^\s*\d+\.\s+(.*)$', lines[i])
+                if not mm: break
+                out.append(f"<li>{md_inline(mm.group(1))}</li>"); i += 1
+            out.append("</ol>"); continue
+        out.append(f"<p>{md_inline(l.strip())}</p>"); i += 1
+    return "\n".join(out)
+
+def build_god_page(n, md):
+    nums = "".join(
+        f'<span class="gy-cur">{k}</span>' if k == n else f'<a href="{k}.html">{k}</a>'
+        for k in range(1, 10))
+    nav = f'<nav class="gy-nav" aria-label="Личные годы">{nums}</nav>'
+    prev_a = f'<a class="btn btn-outline" href="{n-1}.html">← Год {n-1}</a>' if n > 1 else '<span></span>'
+    next_a = f'<a class="btn btn-outline" href="{n+1}.html">Год {n+1} →</a>' if n < 9 else '<span></span>'
+    body = f"""
+<section class="case-hero">
+  <div class="wrap">
+    <span class="kicker">Личный номер года</span>
+    {nav}
+  </div>
+</section>
+<section style="padding-top:36px">
+  <div class="wrap case-body god-body">
+{md_to_html(md)}
+    <div class="gy-pager">{prev_a}{next_a}</div>
+  </div>
+</section>
+"""
+    return page(f"Личный год {n} — Виктория Уткина", body,
+                f"Личный номер года {n}: энергия, задачи и ловушки периода.", depth=1)
+
 def main():
     write("index.html", build_index())
     write("assets/js/site.js", SITE_JS)
@@ -704,7 +787,15 @@ def main():
         write(f"cases/{c['slug']}.html", build_case(c))
     for p in PRODUCTS:
         write(f"products/{p['slug']}.html", build_product(p))
-    print("Готово:", 3 + len(CASES) + len(PRODUCTS), "файлов")
+    god_dir = os.path.join(ROOT, "content", "god")
+    god_n = 0
+    for n in range(1, 10):
+        src = os.path.join(god_dir, f"{n}.md")
+        if os.path.exists(src):
+            md = open(src, encoding="utf-8").read()
+            write(f"god/{n}.html", build_god_page(n, md), strip_periods=False)
+            god_n += 1
+    print("Готово:", 3 + len(CASES) + len(PRODUCTS) + god_n, "файлов")
 
 if __name__ == "__main__":
     main()

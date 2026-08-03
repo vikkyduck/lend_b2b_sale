@@ -255,6 +255,23 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .site-footer ul{list-style:none;display:grid;gap:8px}
 .site-footer .fin{line-height:1.8}
 
+/* ───────── «Личный номер года» ───────── */
+.gy-nav{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.gy-nav a,.gy-nav .gy-cur{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px}
+.gy-nav a{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.gy-nav a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.gy-nav .gy-cur{background:var(--accent);color:#fff}
+.god-body h1{font-size:34px;margin:26px 0 18px}
+.god-body p{margin:0 0 16px}
+.god-body ul,.god-body ol{margin:0 0 16px;padding-left:24px;color:var(--ink)}
+.god-body li{margin-bottom:8px}
+.god-body li>ul{margin:8px 0 0}
+.tbl-wrap{overflow-x:auto;margin:0 0 18px}
+.god-body table{border-collapse:collapse;width:100%;font-size:15.5px}
+.god-body td{border:1px solid var(--line);padding:10px 14px;vertical-align:top;color:var(--ink)}
+.god-body tr:first-child td{background:var(--card);font-weight:800}
+.gy-pager{display:flex;justify-content:space-between;gap:14px;margin-top:44px}
+
 /* ───────── responsive ───────── */
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr}
