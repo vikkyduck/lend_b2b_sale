@@ -8,7 +8,7 @@ TG_CHANNEL = "https://telegram.me/profi_rulit"
 TG_PERSONAL = "https://telegram.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
-ASSET_VER = "20260726b"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
+ASSET_VER = "20260907"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
 
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),
@@ -18,6 +18,44 @@ TAGS = {
 
 # ─────────────────────────────── кейсы ───────────────────────────────
 CASES = [
+ dict(slug="ecom-6-pager", tags=["ai", "edu"], client="Федеральная e-com · 6-pager с ИИ-агентами", home=True, nda=True,
+      task="5 стратегических инициатив, готовых к защите, за 2 дня вместо 30+: практикум по проектированию решений с ИИ-агентами в роли стейкхолдеров",
+      figure="в 15 раз", figure_note="быстрее подготовка драфта стратегического документа: 30+ дней → 2 дня",
+      hero_meta={"Клиент":"Федеральная e-com компания, 10 000+ сотрудников (NDA)",
+                 "Продукт":"Двухдневный практикум: стратегические инициативы в формате 6-pager + ИИ-агенты",
+                 "Роль":"Методология, дизайн практикума, настройка ИИ-агентов, фасилитация"},
+      context="В команде продаж стратегические инициативы защищаются перед топ-менеджментом в формате 6-pager. На практике подготовка даже первого драфта — того, который стейкхолдеры только читают и комментируют, — занимала 30+ дней. Руководители направлений мыслили операционной реализацией: какими шагами достигать цели. В драфтах преобладали описания текущих процессов и гипотезы без экономических расчётов, а иногда команды выходили к стейкхолдерам вовсе без документа. В итоге топ-менеджмент тратил часы не на стратегические решения, а на разбор неподготовленных предложений.",
+      client_task="«Нужно перефокусировать команды с операционной логики на предпринимательскую и сократить цикл подготовки документа — без потери глубины проработки».",
+      steps=[
+        ("Оцифровала фильтры топ-менеджмента","Запросила согласованные ранее документы с комментариями руководства: какие аргументы убеждают стейкхолдеров, каких данных обычно не хватает и из-за чего инициативы возвращают на доработку."),
+        ("Собрала карту стейкхолдеров","В интервью с заказчиком разобрали роли принимающих решения лиц, их требования к метрикам, зоны ответственности и последовательность согласований."),
+        ("Адаптировала методологию Amazon 6-pager","На основе комментариев руководства собрала структуру документа и систему проверочных вопросов, отсекающих поверхностные гипотезы."),
+        ("Настроила ИИ-агентов в двух ролях","Первая роль — сборка 6-pager из материалов команды, вторая — краш-тест аргументации: агенты задавали неудобные вопросы к экономике и ресурсам с позиций разных функций компании. Агентов собрала на платформе NOWATER.TECH."),
+        ("Провела практикум на живых инициативах","Ноль учебных кейсов: в первый же день команды переводили собственные инициативы в проектные решения. Фильтр «зачем это бизнесу»: одна из команд планировала улучшать NPS и CSI, но не связывала их с прибылью — метрики лояльности принимаются к защите только при доказанной корреляции с доходом либо как гипотеза с конкретным ожидаемым экономическим эффектом."),
+        ("Краш-тест без лидеров стримов","По согласованию с заказчиком 5 групп работали без руководителей своих направлений. Это исключило эффект «лидер придёт и всё объяснит» и показало реальную глубину понимания проблемы, цифр и рисков."),
+        ("Предзащита с ИИ-стейкхолдерами","Перед выходом на руководителей направлений команды прогоняли драфты через агентов, настроенных под запросы реальных стейкхолдеров: агенты находили слабые места в ресурсах, экономике и взаимодействии со смежными отделами."),
+      ],
+      result_text="5 автономных команд за 2 дня подготовили 5 полноценных стратегических документов к защите перед управляющими партнёрами. По оценке заказчика и руководителей смежных стримов документы вышли на уровень действующих корпоративных стандартов, а часть — превзошла их по глубине проработки. Команды перестали приносить списки задач: в документах появились конкретная бизнес-метрика, рычаги экономического эффекта и запрос на конкретное управленческое решение — бюджет, аллокация ресурсов, межфункциональные договорённости.",
+      results=[("в 15 раз","быстрее драфт: 30+ дней → 2 дня"),
+               ("5 из 5","автономных команд вышли на защиту с готовым документом"),
+               ("2 роли ИИ","сборка 6-pager и краш-тест решения вопросами стейкхолдеров")],
+      how_counted="«В 15 раз» — сравнение срока подготовки драфта к предварительной читке стейкхолдерами: 30+ дней до практикума против 2 дней интенсивной работы с методологической подготовкой и сопровождением. Регламентные сроки последующего утверждения в расчёт не входят. Оценка качества документов — от заказчика и руководителей смежных стримов.",
+      shots=[
+        ("../assets/img/case-ecom-6-pager/01-scenario.jpg","Верхнеуровневый сценарий практикума: разбор бизнес-задачи, интересы стейкхолдеров и сборка единого документа"),
+        ("../assets/img/case-ecom-6-pager/02-timing.jpg","Сценарий открытия с хронометражем: последовательность заданий, вопросы и материалы просчитаны до минуты"),
+        ("../assets/img/case-ecom-6-pager/03-agents-roles.jpg","Две роли ИИ в программе: помощь в сборке 6-pager и проверка решения вопросами стейкхолдеров"),
+        ("../assets/img/case-ecom-6-pager/04-day2.jpg","День 2: на проверку выносятся ресурсы, конкретные действия, согласование со смежными командами и реализация инициативы"),
+        ("../assets/img/case-ecom-6-pager/05-nowater-dialog.jpg","Агенты собраны на платформе NOWATER.TECH: просмотр сохранённого диалога участника. Перечень доступных агентов шире двух ролей, описанных в кейсе"),
+        ("../assets/img/case-ecom-6-pager/06-executive-summary.jpg","Executive Summary, собранный агентом из материалов участника — рабочий текст для дальнейшей проверки и доработки"),
+        ("../assets/img/case-ecom-6-pager/07-assumptions.jpg","Отдельный блок ответа агента: исходные предположения вынесены на проверку автору — их ещё предстоит подтвердить"),
+        ("../assets/img/case-ecom-6-pager/08-stakeholders.jpg","Карта ИИ-стейкхолдеров: агент задаёт вопросы о ресурсах, экономике и рисках, моделируя комментарии стейкхолдеров до защиты"),
+      ],
+      shots_result=[
+        ("../assets/img/case-ecom-6-pager/09-6-pager.jpg","6-pager, который участник передал агенту: Executive Summary, таблица и комментарии коллег"),
+      ],
+      extra="Главный вывод проекта: наличие ИИ-инструментов само по себе не повышает качество решений. Практически вся команда уже пользовалась последними моделями GPT и Claude — проблему сырых документов это не решало. Работала методология: если фреймворк выстроен правильно, он даёт результат в любой LLM и позволяет командам собирать сильные документы даже без прямого участия лидеров стримов.",
+      related=["urbantech","sistemnoe-myshlenie","seven-agents"]),
+
  dict(slug="urbantech", tag="ai", client="УрбанТех · ИИ-агент скоринга идей", home=True,
       task="ИИ-агент первичного скоринга: фильтрует входящие бизнес-идеи за 20 минут, освобождая время инвестиционному комитету для перспективных направлений",
       figure="20 минут", figure_note="на первичную оценку идеи вместо 10+ дней — без потери качества анализа",
@@ -206,7 +244,7 @@ PRODUCTS = [
       ]),
 ]
 
-HOME_ORDER = ["urbantech","seven-agents","avito-partnerstva","vkusvill","bank-top20","castorama","sistemnoe-myshlenie"]
+HOME_ORDER = ["ecom-6-pager","urbantech","seven-agents","avito-partnerstva","vkusvill","bank-top20","castorama","sistemnoe-myshlenie"]
 
 # ─────────────────────────────── шаблоны ───────────────────────────────
 def esc(s): return html.escape(s, quote=False)
@@ -216,9 +254,19 @@ def nd(s):
     s = s.rstrip()
     return s[:-1] if s.endswith('.') else s
 
+def tags_of(c):
+    """Кейс может относиться к нескольким категориям: tags=[...] или один tag."""
+    return c.get("tags") or [c["tag"]]
+
 def tag_html(key):
     name, cls = TAGS[key]
     return f'<span class="tag {cls}">{name}</span>'
+
+def tags_html(c):
+    keys = tags_of(c)
+    if len(keys) == 1:
+        return tag_html(keys[0])
+    return '<span class="tags">' + "".join(tag_html(k) for k in keys) + '</span>'
 
 def page(title, body, desc="", depth=0):
     pref = "../" * depth
@@ -230,9 +278,7 @@ def page(title, body, desc="", depth=0):
 <script>(function(){{try{{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap&subset=cyrillic" rel="stylesheet">
+<link href="/assets/fonts/montserrat.css" rel="stylesheet">
 <link rel="stylesheet" href="{pref}assets/css/style.css?v={ASSET_VER}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%235b4dff'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='800' fill='white' text-anchor='middle'%3EВУ%3C/text%3E%3C/svg%3E">
 </head>
@@ -287,11 +333,13 @@ def build_index():
     for slug in HOME_ORDER:
         c = by_slug[slug]
         tiles.append(f"""      <a class="case-tile" href="cases/{c['slug']}.html">
-        {tag_html(c['tag'])}
+        {tags_html(c)}
         <span class="client">{esc(c['client'])}</span>
         <span class="arrow">→</span>
       </a>""")
-    tiles.append("""      <a class="case-tile tile-cta" href="cases/index.html">
+    # если кейсы заполнили строки сетки без остатка — CTA растягивается на всю ширину
+    cta_style = ' style="grid-column:1/-1"' if len(tiles) % 4 == 0 else ''
+    tiles.append(f"""      <a class="case-tile tile-cta" href="cases/index.html"{cta_style}>
         Смотреть все кейсы
         <span class="arrow">→</span>
       </a>""")
@@ -498,8 +546,8 @@ def build_index():
 def build_cases_hub():
     cards = []
     for c in CASES:
-        cards.append(f"""      <div class="case-card" data-tag="{c['tag']}">
-        {tag_html(c['tag'])}
+        cards.append(f"""      <div class="case-card" data-tag="{' '.join(tags_of(c))}">
+        {tags_html(c)}
         <span class="client">{esc(c['client'])}</span>
         <p class="task">{esc(nd(c['task']))}</p>
         <div class="figure">{esc(c['figure'])}<small>{esc(nd(c['figure_note']))}</small></div>
@@ -532,7 +580,7 @@ def build_case(c):
         f"""      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(t)}</h3>{f'<p>{esc(nd(d))}</p>' if d else ''}</div></div>"""
         for i, (t, d) in enumerate(c["steps"]))
     nums = "\n".join(f'      <div class="rn"><b>{esc(v)}</b><span>{esc(nd(l))}</span></div>' for v, l in c["results"])
-    related = "\n".join(f"""      <a class="case-tile" href="{by_slug[s]['slug']}.html">{tag_html(by_slug[s]['tag'])}<span class="client">{esc(by_slug[s]['client'])}</span><span class="arrow">→</span></a>"""
+    related = "\n".join(f"""      <a class="case-tile" href="{by_slug[s]['slug']}.html">{tags_html(by_slug[s])}<span class="client">{esc(by_slug[s]['client'])}</span><span class="arrow">→</span></a>"""
                         for s in c.get("related", []) if s in by_slug)
     extra = f'<p style="margin-top:18px">{esc(c["extra"])}</p>' if c.get("extra") else ""
     client_task_html = (f'    <h2>Задача словами заказчика</h2>\n    <p>{esc(c["client_task"])}</p>\n'
@@ -545,17 +593,21 @@ def build_case(c):
     if c.get("cta_extra"):
         label, href = c["cta_extra"]
         cta_extra = f'<p style="margin-top:24px"><a class="btn btn-outline" href="{href}">{esc(label)} →</a></p>'
-    shot_html = ""
-    if c.get("shot"):
-        src, cap = c["shot"]
-        shot_html = f'''    <figure class="shot">
+    def fig(src, cap):
+        return f'''    <figure class="shot">
       <img src="{src}" alt="{esc(nd(cap))}" loading="lazy">
       <figcaption>{esc(nd(cap))}</figcaption>
     </figure>'''
+    shot_html = ""
+    if c.get("shot"):
+        shot_html = fig(*c["shot"])
+    if c.get("shots"):  # несколько скриншотов — сеткой в 2 колонки
+        shot_html += '\n    <div class="shots">\n' + "\n".join(fig(src, cap) for src, cap in c["shots"]) + '\n    </div>'
+    shots_result_html = "\n".join(fig(src, cap) for src, cap in c.get("shots_result", []))
     body = f"""
 <section class="case-hero">
   <div class="wrap">
-    {tag_html(c['tag'])}
+    {tags_html(c)}
     <h1>{esc(c['task'])}</h1>
     <div class="case-meta">
 {meta}
@@ -576,6 +628,7 @@ def build_case(c):
 {nums}
     </div>
     {how_html}
+{shots_result_html}
     {extra}
     {cta_extra}
   </div>
@@ -596,10 +649,9 @@ def build_product(p):
     stages = "\n".join(f"""      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(t)}</h3><p>{esc(nd(d))}</p></div></div>"""
                        for i, (t, d) in enumerate(p["stages"]))
     deliver = "\n".join(f'      <div class="deliver"><b>{esc(t)}</b><p>{esc(nd(d))}</p></div>' for t, d in p["deliver"])
-    rel_cases = [c for c in CASES if (p["slug"] == "stratsessii" and c["tag"] == "strat")
-                 or (p["slug"] == "ai-agenty" and c["tag"] == "ai")
-                 or (p["slug"] == "obuchenie-menedzherov" and c["tag"] == "edu")][:3]
-    rel = "\n".join(f"""      <a class="case-tile" href="../cases/{c['slug']}.html">{tag_html(c['tag'])}<span class="client">{esc(c['client'])}</span><span class="arrow">→</span></a>""" for c in rel_cases)
+    prod_tag = {"stratsessii": "strat", "ai-agenty": "ai", "obuchenie-menedzherov": "edu"}.get(p["slug"])
+    rel_cases = [c for c in CASES if prod_tag in tags_of(c)][:3]
+    rel = "\n".join(f"""      <a class="case-tile" href="../cases/{c['slug']}.html">{tags_html(c)}<span class="client">{esc(c['client'])}</span><span class="arrow">→</span></a>""" for c in rel_cases)
     body = f"""
 <section class="product-hero">
   <div class="wrap">
@@ -678,7 +730,8 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.classList.add('active');
       var f = btn.dataset.filter;
       document.querySelectorAll('#cases-cards .case-card').forEach(function (card) {
-        card.style.display = (f === 'all' || card.dataset.tag === f) ? '' : 'none';
+        var tags = (card.dataset.tag || '').split(' ');
+        card.style.display = (f === 'all' || tags.indexOf(f) !== -1) ? '' : 'none';
       });
     });
   }

@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.classList.add('active');
       var f = btn.dataset.filter;
       document.querySelectorAll('#cases-cards .case-card').forEach(function (card) {
-        card.style.display = (f === 'all' || card.dataset.tag === f) ? '' : 'none';
+        var tags = (card.dataset.tag || '').split(' ');
+        card.style.display = (f === 'all' || tags.indexOf(f) !== -1) ? '' : 'none';
       });
     });
   }

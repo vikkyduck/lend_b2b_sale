@@ -129,7 +129,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .cases-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .case-tile{background:var(--card);border-radius:18px;padding:24px;color:var(--ink);display:flex;flex-direction:column;gap:10px;min-height:170px;transition:transform .16s ease,box-shadow .16s ease;position:relative}
 .case-tile:hover{transform:translateY(-4px);text-decoration:none;box-shadow:var(--shadow)}
-.case-tile .tag{align-self:flex-start}
+.case-tile .tag,.case-tile .tags{align-self:flex-start}
 .case-tile .client{font-weight:800;font-size:16.5px;line-height:1.25}
 .case-tile .arrow{margin-top:auto;font-weight:800;color:var(--accent);font-size:20px}
 .case-tile.tile-cta{background:var(--panel);color:var(--panel-ink);justify-content:center;align-items:flex-start;font-weight:800;font-size:17px}
@@ -141,6 +141,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .cases-band .case-tile.tile-cta{background:#14112e;color:#fff}
 .cases-band .case-tile.tile-cta .arrow{color:#a99cff}
 .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:999px;color:#fff}
+.tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .tag-strat{background:var(--tag-strat)}
 .tag-ai{background:var(--tag-ai)}
 .tag-edu{background:var(--tag-edu)}
@@ -172,6 +173,9 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .shot{margin:34px 0}
 .shot img{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 30px rgba(20,17,46,.08)}
 .shot figcaption{font-size:13.5px;color:var(--ink-soft);margin-top:12px;line-height:1.5}
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 24px;margin:34px 0}
+.shots .shot{margin:0}
+.shots .shot img{border-radius:12px}
 .case-quote{background:var(--paper);border-left:5px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:26px 30px;margin:40px 0;font-size:17px}
 .case-quote .author{margin-top:12px;font-weight:700;font-size:15px;color:var(--ink-soft)}
 .result-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:20px 0}
@@ -296,6 +300,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
   .burger{display:block}
   .cases-grid{grid-template-columns:1fr}
   .cases-cards{grid-template-columns:1fr}
+  .shots{grid-template-columns:1fr}
   .book-grid{grid-template-columns:1fr}
   .book-cover{max-width:180px}
   .boundary{grid-template-columns:1fr}
