@@ -127,6 +127,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .cases-band h2{color:#fff}
 .cases-band .kicker{color:#c3b9ff}
 .cases-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cases-grid.cols3{grid-template-columns:repeat(3,1fr)}
 .case-tile{background:var(--card);border-radius:18px;padding:24px;color:var(--ink);display:flex;flex-direction:column;gap:10px;min-height:170px;transition:transform .16s ease,box-shadow .16s ease;position:relative}
 .case-tile:hover{transform:translateY(-4px);text-decoration:none;box-shadow:var(--shadow)}
 .case-tile .tag,.case-tile .tags{align-self:flex-start}
@@ -134,6 +135,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .case-tile .arrow{margin-top:auto;font-weight:800;color:var(--accent);font-size:20px}
 .case-tile.tile-cta{background:var(--panel);color:var(--panel-ink);justify-content:center;align-items:flex-start;font-weight:800;font-size:17px}
 .case-tile.tile-cta .arrow{color:var(--accent-2)}
+@media(min-width:961px){.case-tile.cta-span3{grid-column:span 3}.case-tile.cta-span2{grid-column:span 2}}
 /* плитки на фиолетовой ленте — фиксированные цвета (лента одинакова в обеих темах) */
 .cases-band .case-tile{background:#fff;color:#14112e}
 .cases-band .case-tile .client{color:#14112e}
@@ -171,6 +173,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .case-body h2{font-size:24px;margin:44px 0 16px}
 .case-body p.muted{color:var(--ink-soft)}
 .case-body p{color:var(--ink)}
+.case-body>p+p{margin-top:12px}
 .case-body ul,.case-body ol{padding-left:22px;display:grid;gap:8px;margin:12px 0;color:var(--ink)}
 .shot{margin:34px 0}
 .shot img{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 30px rgba(20,17,46,.08)}
@@ -178,6 +181,8 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .shots{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 24px;margin:34px 0}
 .shots .shot{margin:0}
 .shots .shot img{border-radius:12px}
+.shots .shot-wide{grid-column:1/-1}
+.shots .shot-wide img{width:calc(50% - 12px)}
 .case-quote{background:var(--paper);border-left:5px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:26px 30px;margin:40px 0;font-size:17px}
 .case-quote .author{margin-top:12px;font-weight:700;font-size:15px;color:var(--ink-soft)}
 .result-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin:20px 0}
@@ -285,7 +290,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
   .hero-grid>div:first-child{padding-bottom:40px}
   .products-grid{grid-template-columns:1fr}
   .probs{grid-template-columns:1fr;gap:0}
-  .cases-grid{grid-template-columns:repeat(2,1fr)}
+  .cases-grid,.cases-grid.cols3{grid-template-columns:repeat(2,1fr)}
   .cases-cards{grid-template-columns:repeat(2,1fr)}
   .verify-grid{grid-template-columns:1fr}
   .book-grid{grid-template-columns:160px 1fr;gap:28px}
@@ -300,9 +305,10 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
   .nav{display:none;position:absolute;top:70px;left:0;right:0;background:var(--bg);flex-direction:column;padding:22px;border-bottom:1px solid var(--line);gap:18px;margin-left:0}
   .nav.open{display:flex}
   .burger{display:block}
-  .cases-grid{grid-template-columns:1fr}
+  .cases-grid,.cases-grid.cols3{grid-template-columns:1fr}
   .cases-cards{grid-template-columns:1fr}
   .shots{grid-template-columns:1fr}
+  .shots .shot-wide img{width:100%}
   .book-grid{grid-template-columns:1fr}
   .book-cover{max-width:180px}
   .boundary{grid-template-columns:1fr}
