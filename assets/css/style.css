@@ -195,6 +195,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .step .n{width:40px;height:40px;border-radius:12px;background:var(--panel);color:var(--panel-ink);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px}
 .step h3{font-size:17px;margin-bottom:4px}
 .step p{color:var(--ink-soft);font-size:15.5px}
+.step p+p{margin-top:8px}
 .related{background:var(--paper)}
 .cta-band{background:var(--panel);color:var(--panel-ink);text-align:center}
 .cta-band h2{color:var(--panel-ink);margin-bottom:14px}
