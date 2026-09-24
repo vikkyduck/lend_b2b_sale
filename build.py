@@ -8,7 +8,7 @@ TG_CHANNEL = "https://telegram.me/profi_rulit"
 TG_PERSONAL = "https://telegram.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
-ASSET_VER = "20260924c"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
+ASSET_VER = "20260924d"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
 
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),
@@ -19,7 +19,7 @@ TAGS = {
 # ─────────────────────────────── кейсы ───────────────────────────────
 CASES = [
  # кейс собран из блоков (blocks) — своя последовательность секций, см. render_case_blocks
- dict(slug="vkusvill-platforma", tag="ai", client="ВкусВилл · платформа методологии с ИИ-ассистентом", home=True,
+ dict(slug="vkusvill-platforma", tag="ai", client="ВкусВилл · платформа методологии с ИИ-ассистентом",
       task="Собрать платформу и ИИ-агента, чтобы сотрудники мгновенно находили нужные материалы и так же быстро создавали новые",
       h1="Как с помощью ИИ автоматизировать работу с материалами",
       subtitle="Чтобы сотрудники мгновенно находили нужные ресурсы — и легко создавали новые",
@@ -165,7 +165,7 @@ CASES = [
       ],
       related=["ecom-6-pager","urbantech","vkusvill"]),
 
- dict(slug="strat-workshop", tag="strat", client="Платформа для поиска работы · стратегический воркшоп", home=True, nda=True,
+ dict(slug="strat-workshop", tag="strat", client="Платформа для поиска работы · стратегический воркшоп", nda=True,
       task="Определить формат и целевую аудиторию мероприятия, который ляжет в стратегию сегмента на 2027 год",
       h1="Как за 3 часа скоординироваться кросс-командам и составить общий план действий",
       figure="3 часа", figure_note="чтобы кросс-команды скоординировались и составили общий план действий",
@@ -243,7 +243,7 @@ CASES = [
       ],
       related=["avito-partnerstva","seven-agents","ecom-6-pager"]),
 
- dict(slug="ecom-6-pager", tags=["ai", "edu"], client="Федеральная e-com · 6-pager с ИИ-агентами", home=True, nda=True,
+ dict(slug="ecom-6-pager", tags=["ai", "edu"], client="Федеральная e-com · 6-pager с ИИ-агентами", nda=True,
       task="5 стратегических инициатив к защите за 2 дня вместо 30",
       h1="Нужно перефокусировать команды с операционной логики на предпринимательскую",
       subtitle="5 стратегических инициатив к защите за 2 дня вместо 30",
@@ -308,7 +308,7 @@ CASES = [
                ]},
       related=["urbantech","sistemnoe-myshlenie","seven-agents"]),
 
- dict(slug="urbantech", tag="ai", client="УрбанТех · ИИ-агент скоринга идей", home=True,
+ dict(slug="urbantech", tag="ai", client="УрбанТех · ИИ-агент скоринга идей",
       task="ИИ-агент первичного скоринга: фильтрует входящие бизнес-идеи за 20 минут, освобождая время инвестиционному комитету для перспективных направлений",
       figure="20 минут", figure_note="на первичную оценку идеи вместо 10+ дней — без потери качества анализа",
       hero_meta={"Клиент":"ГК «УрбанТех»","Продукт":"ИИ-агент первичного скоринга инвестиционных идей","Роль":"Архитектура агента, сборка, передача решения в контур компании"},
@@ -327,7 +327,7 @@ CASES = [
       shot=("../assets/img/case-urbantech/report-example.jpg","Реальное заключение агента: вердикт и оценка «Да/Нет» по 10 критериям. Название идеи, формулировки критериев и обоснования скрыты — коммерческая тайна"),
       related=["seven-agents","avito-partnerstva"]),
 
- dict(slug="seven-agents", tag="strat", client="Стратсессия 360 · преворк 7 ИИ-агентов", home=True,
+ dict(slug="seven-agents", tag="strat", client="Стратсессия 360 · преворк 7 ИИ-агентов",
       task="Подготовка стратегической сессии силами ИИ-агентов: команда тратит время на решения, а не на сбор данных",
       figure="7 агентов", figure_note="выполнили преворк: данные, анализ, сценарии — до начала сессии",
       hero_meta={"Клиент":"Компания под NDA","Продукт":"Стратсессия 360 с ИИ-преворком","Роль":"Дизайн сессии, настройка агентов, фасилитация"},
@@ -346,7 +346,7 @@ CASES = [
       how_counted="«Недели → часы» — сравнение фактического времени подготовки аналогичного пакета аналитики командой вручную (2–3 недели по опыту предыдущих сессий) и времени работы агентов (часы на генерацию + проверка).",
       related=["urbantech","avito-partnerstva"]),
 
- dict(slug="avito-partnerstva", tag="strat", client="Avito · стратсессия направления", home=True,
+ dict(slug="avito-partnerstva", tag="strat", client="Avito · стратсессия направления",
       task="Дизайн и фасилитация стратегической сессии направления",
       figure="CJM → скоринг → пре-мортем", figure_note="полный контур: от карты пути до стресс-теста решений",
       hero_meta={"Клиент":"Avito, направление «Партнёрства»","Продукт":"Дизайн и фасилитация стратсессии","Роль":"Методолог и фасилитатор"},
@@ -363,7 +363,7 @@ CASES = [
       how_counted="Состав и последовательность инструментов — из программы сессии; результат — артефакты, переданные команде после сессии.",
       related=["seven-agents","vkusvill"]),
 
- dict(slug="vkusvill", tag="edu", client="ВкусВилл · стратегия голубого океана", home=True,
+ dict(slug="vkusvill", tag="edu", client="ВкусВилл · стратегия голубого океана",
       task="Тренинг по стратегии голубого океана для команды",
       figure="Blue Ocean", figure_note="методология ВкусВилла — хрестоматийный пример голубого океана в России",
       hero_meta={"Клиент":"ВкусВилл","Продукт":"Тренинг по стратегии голубого океана","Роль":"Тренер, сертифицированный Blue Ocean Strategy Practitioner"},
@@ -379,7 +379,7 @@ CASES = [
       how_counted="Программа тренинга построена целиком на рабочих задачах заказчика — подтверждается составом упражнений программы.",
       related=["sistemnoe-myshlenie","avito-partnerstva"]),
 
- dict(slug="bank-top20", tag="edu", client="Банк топ-20 · пересборка системы обучения", home=True, nda=True,
+ dict(slug="bank-top20", tag="edu", client="Банк топ-20 · пересборка системы обучения", nda=True,
       task="Пересборка системы обучения клиентской группы",
       figure="−41%", figure_note="расходов на обучение · 44% ставок закрыто внутренними кандидатами",
       hero_meta={"Клиент":"Банк топ-20 и международный ритейл (NDA)","Продукт":"Пересборка системы обучения","Роль":"Head of T&D Sales"},
@@ -395,7 +395,7 @@ CASES = [
       how_counted="Сокращение расходов — сравнение бюджета T&D до и после пересборки за сопоставимый период; доля внутренних назначений — из HR-статистики закрытия вакансий.",
       related=["castorama","change-management"]),
 
- dict(slug="castorama", tag="edu", client="Castorama · марафон по лидерству", home=True,
+ dict(slug="castorama", tag="edu", client="Castorama · марафон по лидерству",
       task="Онлайн-марафон по лидерству на 1 500 сотрудников одновременно (2019 год)",
       figure="1 500", figure_note="сотрудников проходили марафон одновременно",
       hero_meta={"Клиент":"Castorama","Продукт":"Корпоративный онлайн-марафон по лидерству","Роль":"Руководитель проекта","Год":"2019"},
@@ -410,7 +410,7 @@ CASES = [
       how_counted="Число одновременных участников — из внутренних коммуникаций проекта.",
       related=["bank-top20","vkusvill"]),
 
- dict(slug="sistemnoe-myshlenie", tag="edu", client="Системное мышление · программа для CEO-1/2", home=True,
+ dict(slug="sistemnoe-myshlenie", tag="edu", client="Системное мышление · программа для CEO-1/2",
       task="Модульная программа для лидеров: анализ, решения, структурирование, критическое мышление",
       figure="4 модуля", figure_note="анализ · принятие решений · структурирование · критическое мышление",
       hero_meta={"Клиент":"Корпоративные программы (CEO-1 / CEO-2)","Продукт":"Программа «Системное и критическое мышление»","Роль":"Автор и ведущая программы"},
@@ -427,7 +427,7 @@ CASES = [
       how_counted="Состав программы — из учебного плана; целевая аудитория — из ТЗ заказчиков программ.",
       related=["change-management","vkusvill"]),
 
- dict(slug="change-management", tag="edu", client="Управление изменениями · тренинг Prosci", home=False,
+ dict(slug="change-management", tag="edu", client="Управление изменениями · тренинг Prosci",
       task="Change management для руководителей",
       figure="Prosci", figure_note="в основе — сертифицированная методология Prosci Change Management",
       hero_meta={"Клиент":"Корпоративные программы","Продукт":"Тренинг по управлению изменениями","Роль":"Тренер, сертификация Prosci Change Management"},
@@ -446,7 +446,7 @@ CASES = [
 
 # ─────────────────────────────── продукты ───────────────────────────────
 PRODUCTS = [
- dict(slug="stratsessii", num="01", name="Стратегические сессии",
+ dict(slug="stratsessii", num="01", tag="strat", name="Стратегические сессии",
       short="«Стратсессия 360»: рынок, смежные отрасли и сценарии за пределами привычного поля зрения. Преворк делают ИИ-агенты — команда тратит время на решения, а не на подготовку.",
       lead="«Стратсессия 360» позволяет выйти за пределы обсуждения внутренних процессов и рассмотреть рынок, смежные отрасли и сценарии, которые раньше находились вне поля зрения команды. Всю подготовительную работу выполняют ИИ-агенты: собирают данные, проводят анализ и формируют сценарии. Команда тратит рабочее время не на подготовку материалов, а непосредственно на принятие решений.",
       term="2 дня очной работы + 2 недели ИИ-аналитики между блоками · follow-up через 6 недель",
@@ -462,7 +462,7 @@ PRODUCTS = [
         ("Доступ к ИИ-агентам на 12 месяцев","команда самостоятельно проверяет новые гипотезы по мере появления"),
         ("Методологический пакет","шаблоны, матрицы, чек-листы, формат защиты гипотез"),
       ]),
- dict(slug="ai-agenty", num="02", name="ИИ-инструменты",
+ dict(slug="ai-agenty", num="02", tag="ai", name="ИИ-инструменты",
       short="ИИ-агенты и платформы, собранные под методологию и критерии компании, берут на себя сбор информации, анализ и первичную оценку. Руководитель не тратит на это время, а фокусируется на главном: принятии стратегических и управленческих решений.",
       lead="ИИ-инструменты готовят основу для принятия решений: собирают данные, рассчитывают сценарии, проводят скоринг идей и переносят методологию компании в рабочую платформу, которой команда пользуется каждый день. Окончательное решение всегда принимает руководитель. При этом логика принятия решений сохраняется внутри компании и становится её самостоятельным активом.",
       term="пилотный контур — от 4 недель (зависит от контура данных компании)",
@@ -478,7 +478,7 @@ PRODUCTS = [
         ("Автоматические заключения","готовые документы для руководства и комитетов: оценки, риски, рекомендации"),
         ("Логика решений как актив","критерии и методология остаются внутри компании"),
       ]),
- dict(slug="obuchenie-menedzherov", num="03", name="Обучение лидеров",
+ dict(slug="obuchenie-menedzherov", num="03", tag="edu", name="Обучение лидеров",
       short="Системное и критическое мышление, структурированная коммуникация (Минто, SCQA, 6-pager), управление изменениями. Модульные программы для CEO-1 и CEO-2.",
       lead="Системное и критическое мышление, структурированная коммуникация по моделям «Пирамида Минто», SCQA и 6-pager, а также управление изменениями. Модульные программы предназначены для руководителей уровней CEO-1 и CEO-2. Результат — повышение скорости подготовки и утверждения решений бордом и качества управленческих документов.",
       term="модульный формат: от 4 сессий по 60 минут до многомодульных программ — под запрос компании",
@@ -496,7 +496,9 @@ PRODUCTS = [
       ]),
 ]
 
-HOME_ORDER = ["vkusvill-platforma","strat-workshop","ecom-6-pager","urbantech","seven-agents","avito-partnerstva","vkusvill","bank-top20","castorama","sistemnoe-myshlenie"]
+# Порядок кейсов везде один — порядок в CASES (новые сверху). Индексы для связей:
+CASE_BY_SLUG = {c["slug"]: c for c in CASES}
+PRODUCT_BY_TAG = {p["tag"]: p for p in PRODUCTS}
 
 # ─────────────────────────────── шаблоны ───────────────────────────────
 def esc(s): return html.escape(s, quote=False)
@@ -510,15 +512,50 @@ def tags_of(c):
     """Кейс может относиться к нескольким категориям: tags=[...] или один tag."""
     return c.get("tags") or [c["tag"]]
 
-def tag_html(key):
+def tag_html(key, href=None):
     name, cls = TAGS[key]
-    return f'<span class="tag {cls}">{name}</span>'
+    return f'<a class="tag {cls}" href="{href}">{name}</a>' if href else f'<span class="tag {cls}">{name}</span>'
 
-def tags_html(c):
-    keys = tags_of(c)
-    if len(keys) == 1:
-        return tag_html(keys[0])
-    return '<span class="tags">' + "".join(tag_html(k) for k in keys) + '</span>'
+def tags_html(c, hub_depth=None):
+    """Метки кейса. С hub_depth метки — ссылки на /cases с включённым фильтром по метке."""
+    parts = [tag_html(k, f'{"../" * hub_depth}cases/index.html#{k}' if hub_depth is not None else None)
+             for k in tags_of(c)]
+    return parts[0] if len(parts) == 1 else '<span class="tags">' + "".join(parts) + '</span>'
+
+def check_data():
+    """Связи между данными проверяем на сборке, а не молча пропускаем."""
+    for c in CASES:
+        for k in tags_of(c):
+            if k not in TAGS: raise ValueError(f"кейс {c['slug']}: неизвестный тег {k}")
+        for s in c.get("related", []):
+            if s not in CASE_BY_SLUG: raise ValueError(f"кейс {c['slug']}: related → нет кейса {s}")
+    if set(TAGS) != set(PRODUCT_BY_TAG): raise ValueError("у каждого тега должен быть ровно один продукт")
+
+# ─── общие куски разметки (плитка, шаг, цифры, цитата, картинка) ───
+def case_tile(c, depth):
+    """Плитка кейса: лента на главной, «похожие кейсы», кейсы продукта."""
+    return (f'      <a class="case-tile" href="{"../" * depth}cases/{c["slug"]}.html">{tags_html(c)}'
+            f'<span class="client">{esc(c["client"])}</span><span class="arrow">→</span></a>')
+
+def cta_tile(label, href, cls="", style=""):
+    return f'      <a class="case-tile tile-cta{cls}" href="{href}"{style}>{esc(label)}<span class="arrow">→</span></a>'
+
+def step_html(n, title, inner):
+    return f'      <div class="step"><span class="n">{n}</span><div><h3>{esc(title)}</h3>{inner}</div></div>'
+
+def numbers_html(items):
+    nums = "\n".join(f'      <div class="rn"><b>{esc(v)}</b><span>{esc(nd(l))}</span></div>' for v, l in items)
+    return f'    <div class="result-numbers">\n{nums}\n    </div>'
+
+def quote_card(text, who=""):
+    foot = f'<p class="muted" style="margin-top:12px"><b>{esc(who)}</b></p>' if who else ""
+    return f'      <div class="verify-card"><p>«{esc(text)}»</p>{foot}</div>'
+
+def fig_html(src, alt, cap="", wide=False):  # wide — во всю ширину сетки (узкий по высоте скрин)
+    capt = f'\n      <figcaption>{esc(nd(cap))}</figcaption>' if cap else ""
+    return f'''    <figure class="shot{" shot-wide" if wide else ""}">
+      <img src="{src}" alt="{esc(nd(alt))}" loading="lazy">{capt}
+    </figure>'''
 
 def page(title, body, desc="", depth=0):
     pref = "../" * depth
@@ -576,29 +613,18 @@ ym(98917313, "init", {{clickmap:true, trackLinks:true, accurateTrackBounce:true}
 </body>
 </html>"""
 
-def case_href(slug, depth): return ("../"*depth) + f"cases/{slug}.html"
-
 # ─────────────────────────────── главная ───────────────────────────────
 def build_index():
-    tiles = []
-    by_slug = {c["slug"]: c for c in CASES}
-    for slug in HOME_ORDER:
-        c = by_slug[slug]
-        tiles.append(f"""      <a class="case-tile" href="cases/{c['slug']}.html">
-        {tags_html(c)}
-        <span class="client">{esc(c['client'])}</span>
-        <span class="arrow">→</span>
-      </a>""")
+    tiles = [case_tile(c, 0) for c in CASES]
     # если кейсы заполнили строки сетки без остатка — CTA растягивается на всю ширину,
     # иначе на десктопе добирает свободные ячейки последней строки
     rest = len(tiles) % 4
-    cta_style = ' style="grid-column:1/-1"' if rest == 0 else ''
-    cta_cls = f' cta-span{4 - rest}' if rest in (1, 2) else ''
-    tiles.append(f"""      <a class="case-tile tile-cta{cta_cls}" href="cases/index.html"{cta_style}>
-        Смотреть все кейсы
-        <span class="arrow">→</span>
-      </a>""")
+    tiles.append(cta_tile("Смотреть все кейсы", "cases/index.html",
+                          cls=f' cta-span{4 - rest}' if rest in (1, 2) else '',
+                          style=' style="grid-column:1/-1"' if rest == 0 else ''))
     tiles_html = "\n".join(tiles)
+    chips = "\n".join(f'        <a class="chip" href="products/{p["slug"]}.html">{esc(p["name"])}</a>' for p in PRODUCTS)
+    products_kicker = {3: "Три продукта", 4: "Четыре продукта"}.get(len(PRODUCTS), "Продукты")
 
     prod_cards = "\n".join(f"""      <a class="product-card" href="products/{p['slug']}.html">
         <span class="num">{p['num']}</span>
@@ -617,9 +643,7 @@ def build_index():
         <span class="role-for">Собственникам и топ-командам:</span> повышаю точность и скорость принятия решений, чтобы каждое из них приносило прибыль, а не потерю инвестиций
       </p>
       <div class="scope">
-        <a class="chip" href="products/stratsessii.html">Стратегические сессии</a>
-        <a class="chip" href="products/ai-agenty.html">ИИ-инструменты</a>
-        <a class="chip" href="products/obuchenie-menedzherov.html">Обучение лидеров</a>
+{chips}
       </div>
       <a class="btn btn-primary" href="{TG_CHANNEL}">Telegram-канал</a>
     </div>
@@ -661,7 +685,7 @@ def build_index():
 
 <section id="products" style="padding-top:0">
   <div class="wrap">
-    <span class="kicker">Четыре продукта</span>
+    <span class="kicker">{products_kicker}</span>
     <h2>Продукты</h2>
     <div class="products-grid">
 {prod_cards}
@@ -802,7 +826,7 @@ def build_cases_hub():
     cards = []
     for c in CASES:
         cards.append(f"""      <div class="case-card" data-tag="{' '.join(tags_of(c))}">
-        {tags_html(c)}
+        {tags_html(c, hub_depth=1)}
         <span class="client">{esc(c['client'])}</span>
         <p class="task">{esc(nd(c['task']))}</p>
         <div class="figure">{esc(c['figure'])}<small>{esc(nd(c['figure_note']))}</small></div>
@@ -828,12 +852,6 @@ def build_cases_hub():
     return page("Кейсы — Виктория Уткина", body, "Кейсы: стратегические сессии, ИИ-инструменты, обучение лидеров.", depth=1)
 
 # ─────────── кейс из блоков: своя последовательность секций (длинные кейсы) ───────────
-def _block_fig(src, alt, cap=""):
-    capt = f'\n      <figcaption>{esc(nd(cap))}</figcaption>' if cap else ""
-    return f'''    <figure class="shot">
-      <img src="{src}" alt="{esc(nd(alt))}" loading="lazy">{capt}
-    </figure>'''
-
 def _block_items(items):
     """Содержимое шага или блока: строка — один абзац; в списке str — буллит, (lead, text) — буллит
     с жирным началом, {"b": lead, "p": text} — абзац. Подряд идущие буллиты собираются в один <ul>."""
@@ -875,52 +893,50 @@ def render_case_blocks(blocks):
         elif kind == "steps":  # (заголовок, содержимое[, [(src, alt, подпись), ...]])
             rows = []
             for i, st in enumerate(b[1]):
-                figs = "".join("\n" + _block_fig(*f) for f in (st[2] if len(st) > 2 else []))
-                rows.append(f'      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(st[0])}</h3>{_block_items(st[1])}{figs}</div></div>')
+                figs = "".join("\n" + fig_html(*f) for f in (st[2] if len(st) > 2 else []))
+                rows.append(step_html(i + 1, st[0], _block_items(st[1]) + figs))
             out.append('    <div class="steps">\n' + "\n".join(rows) + '\n    </div>')
         elif kind == "quotes":  # цитаты — разметка отзывов (verify-card), по три в ряд
-            cards = "\n".join(
-                f'      <div class="verify-card"><p>«{esc(q)}»</p>'
-                + (f'<p class="muted" style="margin-top:12px"><b>{esc(foot)}</b></p>' if foot else "") + '</div>'
-                for q, foot in b[1])
+            cards = "\n".join(quote_card(q, foot) for q, foot in b[1])
             out.append(f'    <div class="verify-grid cols3">\n{cards}\n    </div>')
         elif kind == "numbers":
-            nums = "\n".join(f'      <div class="rn"><b>{esc(v)}</b><span>{esc(nd(l))}</span></div>' for v, l in b[1])
-            out.append(f'    <div class="result-numbers">\n{nums}\n    </div>')
+            out.append(numbers_html(b[1]))
         elif kind == "compare":  # было → стало
             lis = "\n".join(f'      <li>{esc(was)} → <b>{esc(now)}</b></li>' for was, now in b[1])
             out.append(f'    <ul>\n{lis}\n    </ul>')
         elif kind == "figure":
-            out.append(_block_fig(*b[1:]))
+            out.append(fig_html(*b[1:]))
         else:
             raise ValueError(f"неизвестный блок кейса: {kind}")
     return "\n".join(out)
 
-def build_case_blocks(c, meta, by_slug):
-    related = "\n".join(f"""      <a class="case-tile" href="{by_slug[s]['slug']}.html">{tags_html(by_slug[s])}<span class="client">{esc(by_slug[s]['client'])}</span><span class="arrow">→</span></a>"""
-                        for s in c.get("related", []) if s in by_slug)
+def case_shell(c, inner):
+    """Страница кейса: шапка (метки — ссылки на фильтр), тело, «похожие кейсы» + выходы на продукт и все кейсы."""
+    meta = "\n".join(f'      <div class="meta-row"><b>{esc(k)}</b><span>{esc(v)}</span></div>' for k, v in c["hero_meta"].items())
     sub_html = f'    <p class="case-sub">{esc(c["subtitle"])}</p>\n' if c.get("subtitle") else ""
+    tiles = [case_tile(CASE_BY_SLUG[s], 1) for s in c.get("related", [])]
+    tiles += [cta_tile(f"Продукт: {PRODUCT_BY_TAG[k]['name']}", f"../products/{PRODUCT_BY_TAG[k]['slug']}.html") for k in tags_of(c)]
+    tiles.append(cta_tile("Все кейсы", "index.html"))
     body = f"""
 <section class="case-hero">
   <div class="wrap">
-    {tags_html(c)}
+    {tags_html(c, hub_depth=1)}
     <h1>{esc(c.get('h1') or c['task'])}</h1>
-{sub_html}
-    <div class="case-meta">
+{sub_html}    <div class="case-meta">
 {meta}
     </div>
   </div>
 </section>
 <section style="padding-top:48px">
   <div class="wrap case-body">
-{render_case_blocks(c["blocks"])}
+{inner}
   </div>
 </section>
 <section class="related">
   <div class="wrap">
     <h2>Похожие кейсы</h2>
     <div class="cases-grid cols3">
-{related}
+{chr(10).join(tiles)}
     </div>
   </div>
 </section>
@@ -929,20 +945,14 @@ def build_case_blocks(c, meta, by_slug):
 
 # ─────────────────────────────── страница кейса ───────────────────────────────
 def build_case(c):
-    by_slug = {x["slug"]: x for x in CASES}
-    meta = "\n".join(f'      <div class="meta-row"><b>{esc(k)}</b><span>{esc(v)}</span></div>' for k, v in c["hero_meta"].items())
     if c.get("blocks"):
-        return build_case_blocks(c, meta, by_slug)
+        return case_shell(c, render_case_blocks(c["blocks"]))
     steps = "\n".join(
-        f"""      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(t)}</h3>{''.join(f'<p>{esc(nd(x) if k == len(ps) - 1 else x)}</p>' for ps in [d if isinstance(d, list) else [d] if d else []] for k, x in enumerate(ps))}</div></div>"""
+        step_html(i + 1, t, ''.join(f'<p>{esc(nd(x) if k == len(ps) - 1 else x)}</p>' for ps in [d if isinstance(d, list) else [d] if d else []] for k, x in enumerate(ps)))
         for i, (t, d) in enumerate(c["steps"]))
-    nums = "\n".join(f'      <div class="rn"><b>{esc(v)}</b><span>{esc(nd(l))}</span></div>' for v, l in c["results"])
-    related = "\n".join(f"""      <a class="case-tile" href="{by_slug[s]['slug']}.html">{tags_html(by_slug[s])}<span class="client">{esc(by_slug[s]['client'])}</span><span class="arrow">→</span></a>"""
-                        for s in c.get("related", []) if s in by_slug)
     extra = f'<p style="margin-top:18px">{esc(c["extra"])}</p>' if c.get("extra") else ""
     ctx = c["context"] if isinstance(c["context"], list) else [c["context"]]
     ctx_html = "\n".join(f'    <p>{esc(t)}</p>' for t in ctx)
-    sub_html = f'    <p class="case-sub">{esc(c["subtitle"])}</p>\n' if c.get("subtitle") else ""
     steps_lead = f'    <p>{esc(c["steps_lead"])}</p>\n' if c.get("steps_lead") else ""
     ctx_bullets = ""
     if c.get("context_bullets"):
@@ -966,8 +976,7 @@ def build_case(c):
     # отзывы — та же разметка, что заготовлена для секции отзывов на главной (verify-card)
     reviews_html = ""
     if c.get("reviews"):
-        cards = "\n".join(f'      <div class="verify-card"><p>«{esc(t)}»</p><p class="muted" style="margin-top:12px"><b>{esc(who)}</b></p></div>'
-                          for t, who in c["reviews"])
+        cards = "\n".join(quote_card(t, who) for t, who in c["reviews"])
         reviews_html = f'    <h2>Обратная связь</h2>\n    <div class="verify-grid">\n{cards}\n    </div>\n'
 
     client_task_html = (f'    <h2>Задача словами заказчика</h2>\n    <p>{esc(c["client_task"])}</p>\n'
@@ -980,11 +989,7 @@ def build_case(c):
     if c.get("cta_extra"):
         label, href = c["cta_extra"]
         cta_extra = f'<p style="margin-top:24px"><a class="btn btn-outline" href="{href}">{esc(label)} →</a></p>'
-    def fig(src, cap, wide=False):  # wide — во всю ширину сетки (узкий по высоте скрин)
-        return f'''    <figure class="shot{' shot-wide' if wide else ''}">
-      <img src="{src}" alt="{esc(nd(cap))}" loading="lazy">
-      <figcaption>{esc(nd(cap))}</figcaption>
-    </figure>'''
+    def fig(src, cap, wide=False): return fig_html(src, cap, cap, wide)
     shot_html = ""
     if c.get("shot"):
         shot_html = fig(*c["shot"])
@@ -996,20 +1001,7 @@ def build_case(c):
         paras = (lead[0] if isinstance(lead[0], list) else [lead[0]]) if lead else []
         shot_html += f'\n    <h2>{esc(head)}</h2>' + "".join(f'\n    <p>{esc(x)}</p>' for x in paras) + shots_grid(items)
     shots_result_html = "\n".join(fig(src, cap) for src, cap in c.get("shots_result", []))
-    body = f"""
-<section class="case-hero">
-  <div class="wrap">
-    {tags_html(c)}
-    <h1>{esc(c.get('h1') or c['task'])}</h1>
-{sub_html}
-    <div class="case-meta">
-{meta}
-    </div>
-  </div>
-</section>
-<section style="padding-top:48px">
-  <div class="wrap case-body">
-    <h2 style="margin-top:0">Контекст</h2>
+    inner = f"""    <h2 style="margin-top:0">Контекст</h2>
 {ctx_html}
 {client_task_html}{ctx_bullets}    <h2>Что было сделано</h2>
 {steps_lead}    <div class="steps">
@@ -1017,34 +1009,19 @@ def build_case(c):
     </div>
 {shot_html}
 {result_block}    <h2>{nums_heading}</h2>
-    <div class="result-numbers">
-{nums}
-    </div>
+{numbers_html(c["results"])}
 {note_html}{footnote_html}    {how_html}
 {shots_result_html}
 {reviews_html}{insight_html}    {extra}
-    {cta_extra}
-  </div>
-</section>
-<section class="related">
-  <div class="wrap">
-    <h2>Похожие кейсы</h2>
-    <div class="cases-grid cols3">
-{related}
-    </div>
-  </div>
-</section>
-"""
-    return page(f"{c['client']} — кейс — Виктория Уткина", body, c["task"], depth=1)
+    {cta_extra}"""
+    return case_shell(c, inner)
 
 # ─────────────────────────────── страница продукта ───────────────────────────────
 def build_product(p):
-    stages = "\n".join(f"""      <div class="step"><span class="n">{i+1}</span><div><h3>{esc(t)}</h3><p>{esc(nd(d))}</p></div></div>"""
-                       for i, (t, d) in enumerate(p["stages"]))
+    stages = "\n".join(step_html(i + 1, t, f'<p>{esc(nd(d))}</p>') for i, (t, d) in enumerate(p["stages"]))
     deliver = "\n".join(f'      <div class="deliver"><b>{esc(t)}</b><p>{esc(nd(d))}</p></div>' for t, d in p["deliver"])
-    prod_tag = {"stratsessii": "strat", "ai-agenty": "ai", "obuchenie-menedzherov": "edu"}.get(p["slug"])
-    rel_cases = [c for c in CASES if prod_tag in tags_of(c)][:3]
-    rel = "\n".join(f"""      <a class="case-tile" href="../cases/{c['slug']}.html">{tags_html(c)}<span class="client">{esc(c['client'])}</span><span class="arrow">→</span></a>""" for c in rel_cases)
+    # все кейсы продукта (по его тегу) + выход на общий список
+    rel = "\n".join([case_tile(c, 1) for c in CASES if p["tag"] in tags_of(c)] + [cta_tile("Все кейсы", "../cases/index.html")])
     body = f"""
 <section class="product-hero">
   <div class="wrap">
@@ -1114,19 +1091,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // фильтр кейсов: состояние живёт в адресе (#strat / #ai / #edu) — на него ведут метки кейсов
   var bar = document.querySelector('.filter-bar');
   if (bar) {
-    bar.addEventListener('click', function (e) {
-      var btn = e.target.closest('.filter-btn');
-      if (!btn) return;
-      bar.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var f = btn.dataset.filter;
+    var apply = function (f) {
+      if (!bar.querySelector('[data-filter="' + f + '"]')) f = 'all';
+      bar.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.filter === f); });
       document.querySelectorAll('#cases-cards .case-card').forEach(function (card) {
         var tags = (card.dataset.tag || '').split(' ');
         card.style.display = (f === 'all' || tags.indexOf(f) !== -1) ? '' : 'none';
       });
+    };
+    var fromHash = function () { apply(location.hash.slice(1) || 'all'); };
+    bar.addEventListener('click', function (e) {
+      var btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      history.replaceState(null, '', btn.dataset.filter === 'all' ? location.pathname : '#' + btn.dataset.filter);
+      apply(btn.dataset.filter);
     });
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
   }
 });
 """
@@ -1228,6 +1212,7 @@ def build_god_page(n, md):
                 f"Личный номер года {n}: энергия, задачи и ловушки периода.", depth=1)
 
 def main():
+    check_data()
     write("index.html", build_index())
     write("assets/js/site.js", SITE_JS)
     write("cases/index.html", build_cases_hub())

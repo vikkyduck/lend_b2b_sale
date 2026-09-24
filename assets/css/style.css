@@ -143,6 +143,7 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 .cases-band .case-tile.tile-cta{background:#14112e;color:#fff}
 .cases-band .case-tile.tile-cta .arrow{color:#a99cff}
 .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:999px;color:#fff}
+a.tag:hover{text-decoration:none;filter:brightness(1.1)}
 .tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .tag-strat{background:var(--tag-strat)}
 .tag-ai{background:var(--tag-ai)}

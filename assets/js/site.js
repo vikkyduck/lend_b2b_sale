@@ -26,18 +26,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // фильтр кейсов: состояние живёт в адресе (#strat / #ai / #edu) — на него ведут метки кейсов
   var bar = document.querySelector('.filter-bar');
   if (bar) {
-    bar.addEventListener('click', function (e) {
-      var btn = e.target.closest('.filter-btn');
-      if (!btn) return;
-      bar.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var f = btn.dataset.filter;
+    var apply = function (f) {
+      if (!bar.querySelector('[data-filter="' + f + '"]')) f = 'all';
+      bar.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.filter === f); });
       document.querySelectorAll('#cases-cards .case-card').forEach(function (card) {
         var tags = (card.dataset.tag || '').split(' ');
         card.style.display = (f === 'all' || tags.indexOf(f) !== -1) ? '' : 'none';
       });
+    };
+    var fromHash = function () { apply(location.hash.slice(1) || 'all'); };
+    bar.addEventListener('click', function (e) {
+      var btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      history.replaceState(null, '', btn.dataset.filter === 'all' ? location.pathname : '#' + btn.dataset.filter);
+      apply(btn.dataset.filter);
     });
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
   }
 });
