@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """Генератор статического сайта vi-utkina.ru (хаб по ТЗ)."""
-import os, html, re
+import os, html, re, hashlib
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TG_CHANNEL = "https://telegram.me/profi_rulit"
 TG_PERSONAL = "https://telegram.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
-ASSET_VER = "20260924d"  # бампать при изменении style.css / site.js — сбрасывает кэш браузера
 
 TAGS = {
     "strat":  ("Стратсессии", "tag-strat"),
@@ -564,7 +563,7 @@ def page(title, body, desc="", depth=0):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){{try{{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
+<script>(function(){{function a(){{var t;try{{t=localStorage.getItem('theme');}}catch(e){{}}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}}a();window.applyTheme=a;}})();</script>
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link href="/assets/fonts/montserrat.css" rel="stylesheet">
@@ -1070,14 +1069,26 @@ document.addEventListener('DOMContentLoaded', function () {
   if (burger) burger.addEventListener('click', function () { nav.classList.toggle('open'); });
 
   // переключатель темы (сохраняем выбор)
+  var root = document.documentElement;
   var tt = document.getElementById('theme-toggle');
   if (tt) tt.addEventListener('click', function () {
-    var cur = document.documentElement.getAttribute('data-theme');
-    var sysDark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
-    var next = cur ? (cur === 'dark' ? 'light' : 'dark') : (sysDark ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', next);
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch (e) {}
   });
+  // при смене системной темы заново применяем правило из <head> (applyTheme): пока выбора нет — тема системы.
+  // На время печати Chrome сообщает о «светлой системе» — тему не трогаем, печать и так светлая (@media screen в CSS)
+  // На время печати гасим и переходы цвета: иначе Safari после печати анимирует возврат светлой палитры в тёмную
+  var printing = false;
+  window.addEventListener('beforeprint', function () { printing = true; root.classList.add('no-tr'); });
+  window.addEventListener('afterprint', function () {
+    printing = false;
+    requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove('no-tr'); }); });
+  });
+  var followSystem = function () { if (!printing && window.applyTheme) window.applyTheme(); };
+  var mq = matchMedia('(prefers-color-scheme: dark)');
+  if (mq.addEventListener) mq.addEventListener('change', followSystem); else if (mq.addListener) mq.addListener(followSystem);
+  followSystem();  // система могла сменить тему, пока грузились стили и этот скрипт — события об этом уже не будет
 
   // reveal on scroll (без JS контент виден — класс добавляем скриптом)
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
@@ -1114,6 +1125,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 """
+
+# ?v= в ссылках на стили и скрипт: меняется сама, когда меняется их содержимое
+with open(os.path.join(ROOT, "assets", "css", "style.css"), "rb") as _css:
+    ASSET_VER = hashlib.sha1(_css.read() + SITE_JS.encode("utf-8")).hexdigest()[:10]
 
 # ─────────────────────────────── сборка ───────────────────────────────
 def write(path, content, strip_periods=True):

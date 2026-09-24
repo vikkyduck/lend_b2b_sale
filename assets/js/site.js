@@ -5,14 +5,26 @@ document.addEventListener('DOMContentLoaded', function () {
   if (burger) burger.addEventListener('click', function () { nav.classList.toggle('open'); });
 
   // переключатель темы (сохраняем выбор)
+  var root = document.documentElement;
   var tt = document.getElementById('theme-toggle');
   if (tt) tt.addEventListener('click', function () {
-    var cur = document.documentElement.getAttribute('data-theme');
-    var sysDark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
-    var next = cur ? (cur === 'dark' ? 'light' : 'dark') : (sysDark ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', next);
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch (e) {}
   });
+  // при смене системной темы заново применяем правило из <head> (applyTheme): пока выбора нет — тема системы.
+  // На время печати Chrome сообщает о «светлой системе» — тему не трогаем, печать и так светлая (@media screen в CSS)
+  // На время печати гасим и переходы цвета: иначе Safari после печати анимирует возврат светлой палитры в тёмную
+  var printing = false;
+  window.addEventListener('beforeprint', function () { printing = true; root.classList.add('no-tr'); });
+  window.addEventListener('afterprint', function () {
+    printing = false;
+    requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove('no-tr'); }); });
+  });
+  var followSystem = function () { if (!printing && window.applyTheme) window.applyTheme(); };
+  var mq = matchMedia('(prefers-color-scheme: dark)');
+  if (mq.addEventListener) mq.addEventListener('change', followSystem); else if (mq.addListener) mq.addListener(followSystem);
+  followSystem();  // система могла сменить тему, пока грузились стили и этот скрипт — события об этом уже не будет
 
   // reveal on scroll (без JS контент виден — класс добавляем скриптом)
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {

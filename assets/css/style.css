@@ -11,24 +11,9 @@
   --header-bg:rgba(255,255,255,.9);
   --radius:20px; --maxw:1280px;
 }
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#100d26; --paper:#171232; --card:#1d1940; --line:#2c2850;
-    --ink:#f2f0fb; --ink-soft:#aba6c8;
-    --accent:#8f81ff; --accent-2:#a99cff; --accent-soft:rgba(143,129,255,.15); --accent-ink:#cbc4ff;
-    --panel:#241f4a; --panel-ink:#f4f2fb; --panel-soft:#b7b2d0; --panel-line:rgba(255,255,255,.10);
-    --logo-ink:#8b86a6;
-    --shadow:0 16px 46px rgba(0,0,0,.5);
-    --header-bg:rgba(16,13,38,.86);
-  }
-}
-:root[data-theme="light"]{
-  --bg:#ffffff; --paper:#f6f5fb; --card:#ffffff; --line:#e7e4f4;
-  --ink:#14112e; --ink-soft:#57536f; --accent:#5b4dff; --accent-2:#8a7bff;
-  --accent-soft:#eceafd; --accent-ink:#241d63;
-  --panel:#14112e; --panel-ink:#f4f2fb; --panel-soft:#b7b2d0;
-  --logo-ink:#9b97ad; --shadow:0 14px 44px rgba(20,17,46,.10); --header-bg:rgba(255,255,255,.9);
-}
+/* data-theme на <html> всегда ставит скрипт в <head>: сохранённый выбор, иначе системная тема.
+   Тёмная палитра — только для экрана: печать всегда светлая */
+@media screen{
 :root[data-theme="dark"]{
   --bg:#100d26; --paper:#171232; --card:#1d1940; --line:#2c2850;
   --ink:#f2f0fb; --ink-soft:#aba6c8; --accent:#8f81ff; --accent-2:#a99cff;
@@ -36,8 +21,10 @@
   --panel:#241f4a; --panel-ink:#f4f2fb; --panel-soft:#b7b2d0;
   --logo-ink:#8b86a6; --shadow:0 16px 46px rgba(0,0,0,.5); --header-bg:rgba(16,13,38,.86);
 }
+}
 
 *{margin:0;padding:0;box-sizing:border-box}
+.no-tr,.no-tr *,.no-tr *::before,.no-tr *::after{transition:none!important}
 html{scroll-behavior:smooth}
 body{font-family:'Montserrat',system-ui,-apple-system,sans-serif;font-weight:500;color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;transition:background .25s ease,color .25s ease}
 img{max-width:100%;display:block}
