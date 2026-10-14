@@ -66,8 +66,8 @@ h2{font-size:clamp(27px,3.6vw,40px);margin-bottom:30px}
 
 /* ───────── hero ───────── */
 .hero{background:radial-gradient(1100px 560px at 84% -8%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 60%),var(--bg);padding:58px 0 0;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:40px;align-items:end}
-.hero-grid>div:first-child{padding-bottom:60px}
+.hero-grid{display:grid;grid-template-columns:.94fr 1.06fr;gap:40px;align-items:end}
+.hero-grid>div:last-child{padding-bottom:60px}
 .hero h1{font-size:clamp(34px,4.6vw,56px);margin:14px 0 24px;max-width:660px}
 .hero .role{font-size:clamp(17px,1.8vw,20px);font-weight:500;color:var(--ink-soft);line-height:1.5;margin-bottom:28px;max-width:560px}
 .hero .role .role-for{color:var(--ink);font-weight:700}
@@ -314,7 +314,7 @@ a.tag:hover{text-decoration:none;filter:brightness(1.1)}
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr}
   .hero-figure{display:none}
-  .hero-grid>div:first-child{padding-bottom:40px}
+  .hero-grid>div:last-child{padding-bottom:40px}
   .products-grid{grid-template-columns:1fr}
   .probs{grid-template-columns:1fr;gap:0}
   .cases-grid,.cases-grid.cols3{grid-template-columns:repeat(2,1fr)}
