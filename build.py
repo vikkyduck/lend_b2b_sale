@@ -19,10 +19,10 @@ TAGS = {
 CASES = [
  # кейс из Google Doc, вкладка v6: текст автора, исправлены только опечатки
  dict(slug="commercial-function-ai", tag="strat", client="Проектирование коммерческой функции в эпоху AI", nda=True,
-      task="Клиент: Коммерческая функция ключевого игрока российского e-commerce и classified-рынка",
+      task="Клиент: коммерческая функция крупной технологической компании",
       figure="2 дня", figure_note="Стратегическая сессия · NDA",
-      h1="Бэклог продукта под завтрашние потребности клиентов и матрица \"человек - ИИ\" за 2 дня: стратсессия для коммерческой функции classified платформы",
-      hero_meta={"Клиент":"Коммерческая функция ключевого игрока российского e-commerce и classified-рынка",
+      h1="Бэклог продукта под завтрашние потребности клиентов и матрица \"человек - ИИ\" за 2 дня: стратсессия для коммерческой функции крупной технологической компании",
+      hero_meta={"Клиент":"Коммерческая функция крупной технологической компании",
                  "Продукт":"Стратегическая сессия, 2 дня",
                  "Участники":"16 руководителей коммерческой функции: продажи, маркетинг, работа с ключевыми клиентами, процессы и проекты, обучение",
                  "Моя роль":"Сценарий стратегической сессии, сбор и верификация фактуры о клиентах и рынке, модерация сессии"},
@@ -121,18 +121,18 @@ CASES = [
       related=["seven-agents","strat-workshop","ecom-6-pager"]),
 
  dict(slug="seven-agents", tags=["strat", "ai"], client="Оператор перформанс-трафика · стратсессия 360 с ИИ-ассистентами", nda=True,
-      task="15 идей для роста за 5 часов вместо 3 дней",
-      h1="Стратсессия 360: 15 идей для роста за 5 часов вместо 3 дней",
+      task="Стратегический анализ рынка, клиентов и неклиентов с ИИ-ассистентами",
+      h1="Стратсессия 360 с ИИ-ассистентами: рынок, клиенты и новые зоны роста",
       subtitle="Команда вышла за периметр внутренних процессов и посмотрела на рынок, клиентов и тех, кто пока не выбирает их продукт",
-      figure="5 часов", figure_note="вместо 3 дней",
+      figure="4 уровня", figure_note="стратегического анализа за одну сессию",
       hero_meta={"Клиент":"Официальный оператор перформанс-трафика ведущей C2C/B2C-платформы",
-                 "Продукт":"Стратегическая сессия с ИИ-ассистентами, 5 часов",
+                 "Продукт":"Стратегическая сессия с ИИ-ассистентами",
                  "Участники":"20 человек из отделов продаж, продукта, аналитики, проектной команды и маркетинга",
                  "Моя роль":"Сценарий, настройка ИИ-ассистентов, модерация",
-                 "Результат":"Команда сформулировала гипотезы и перенесла 15 прикладных инициатив в бэклог"},
+                 "Результат":"Команда сформулировала гипотезы и перенесла прикладные инициативы в бэклог"},
       blocks=[
         ("h2", "Результаты"),
-        ("p", "За 5 часов 20 участников из нескольких функций прошли 4 уровня стратегического анализа: текущее положение, конкурентное поле, клиентский путь и потенциальные новые зоны роста."),
+        ("p", "20 участников из нескольких функций прошли 4 уровня стратегического анализа: текущее положение, конкурентное поле, клиентский путь и потенциальные новые зоны роста."),
         ("p", "Результат команды:", ""),
         ("list", [
           "Определила, что влияет на выбор их клиентов и партнеров и где компания может усилить свое предложение",
@@ -161,28 +161,28 @@ CASES = [
           "синхронизировала видение сотрудников разных функций",
           "расширила поле анализа за пределы текущих процессов",
           "отделила потенциальные стратегические ставки от локальных решений",
-          "перенесла 15 сформированных инициатив в бэклог",
+          "перенесла сформированные инициативы в бэклог",
         ]),
       ],
       related=["ecom-6-pager","strat-workshop","urbantech"]),
 
  # кейс собран из блоков (blocks) — своя последовательность секций, см. render_case_blocks
- dict(slug="vkusvill-platforma", tag="ai", client="ВкусВилл · платформа методологии с ИИ-ассистентом",
+ dict(slug="methodology-platform-ai", tag="ai", client="Консалтинг розничной сети · платформа методологии с ИИ-ассистентом",
       task="Собрать платформу и ИИ-агента, чтобы сотрудники мгновенно находили нужные материалы и так же быстро создавали новые",
       h1="Как с помощью ИИ автоматизировать работу с материалами",
       subtitle="Чтобы сотрудники мгновенно находили нужные ресурсы — и легко создавали новые",
-      figure="15 млн", figure_note="экономии компании: платформа собрана без команды разработки",
-      hero_meta={"Клиент":"ВкусВилл",
-                 "Продукт":"Корпоративная платформа знаний с ИИ-ассистентом по методологии \"Клиентократия\"",
-                 "Участники":"92 пользователя: клиентократы, эксперты, методологи, администраторы",
+      figure="92", figure_note="пользователя на платформе: участники команд, эксперты, методологи, администраторы",
+      hero_meta={"Клиент":"Консалтинговая компания розничной сети",
+                 "Продукт":"Корпоративная платформа знаний с ИИ-ассистентом по методологии компании",
+                 "Участники":"92 пользователя: участники команд, эксперты, методологи, администраторы",
                  "Моя роль":"Лидер команды методологии, исследование пользователей, сборка платформы вайбкодингом, запуск"},
       blocks=[
         ("h2", "Контекст"),
-        ("p", "«Клиентократия» — методология, по которой ВкусВилл живёт как компания. Она описывает ключевые принципы, и каждая новая команда работает в согласии с ними."),
+        ("p", "Методология компании описывает ключевые принципы работы, и каждая новая команда работает в согласии с ними."),
         ("p", "Каждая команда проходит один и тот же цикл: определение клиентов → диагностика болей → обещания и метрики → реализация решений."),
         ("p", "Вопрос автоматизации методологии стал критичен:", ""),
         ("list", [
-          ("Единые принципы:", "методология описывает, как устроена работа в компании: обещания, метрики, автономные команды. Это не теория — это операционная система ВкусВилла"),
+          ("Единые принципы:", "методология описывает, как устроена работа в компании: обещания, метрики, автономные команды. Это не теория, а операционная система компании"),
           ("Скорость разработки:", "нужно быстро ориентироваться в приоритетах, а значит, работа команды методологов должна стать прозрачной"),
           ("Рост компании сломал прежнюю инфраструктуру:", "описание методологии хранилось в Google Doc, но к 2026 году он разросся до 300+ страниц — работать с ним стало нереально"),
         ]),
@@ -198,7 +198,7 @@ CASES = [
             "Красное — закрываем первым",
             "Жёлтое — риск",
             "Зелёное — бережём как силу",
-           ], [("../assets/img/case-vkusvill-platforma/00-csi.jpg", "Входная оценка CSI",
+           ], [("../assets/img/case-methodology-platform-ai/00-csi.jpg", "Входная оценка CSI",
                 "Входная оценка CSI по 10-балльной шкале: красное — то, что платформа закрывает в первую очередь")]),
           ("Выявили 5 болей", [
             ("Информационный хаос:", "материалы разрознены по папкам и чатам. Непонятно, где что лежит и где смотреть"),
@@ -245,55 +245,54 @@ CASES = [
             "Один адрес — вся методология компании внутри",
             "Доступ по коду: внешние не видят внутреннюю кухню",
             "Знакомый, спокойный интерфейс — без порога входа",
-           ], [("../assets/img/case-vkusvill-platforma/01-login.jpg", "Экран входа по коду доступа", "")]),
+           ], [("../assets/img/case-methodology-platform-ai/01-login.jpg", "Экран входа по коду доступа", "")]),
           ("Спросить, а не искать", [
             {"b": "Боль:", "p": "поиск нужного занимал минуты и десятки кликов по папкам. Новичок просто не знал, с чего начать."},
             {"b": "Почему так:"},
             "Строка ИИ-ассистента: задаёшь вопрос — получаешь ответ из базы",
             "В чаты поместили бота, который дублирует все новости и предлагает перейти по ссылке на платформу",
             "Счётчики (инструменты, люди, кейсы) показывают живую базу",
-           ], [("../assets/img/case-vkusvill-platforma/02-home.jpg", "Главная и строка ИИ-ассистента", "Имена скрыты")]),
+           ], [("../assets/img/case-methodology-platform-ai/02-home.jpg", "Главная и строка ИИ-ассистента", "Имена скрыты")]),
           ("Сложное — объяснено просто", [
             {"b": "Боль:", "p": "методологию трудно освоить с нуля: тяжёлый текст, неочевидная применимость, нет наглядности."},
             {"b": "Почему так:"},
             "Принципы и инструменты разнесены по понятным вкладкам",
             "Каждая концепция — с примерами «как правильно / как нет»",
             "Сначала по-человечески, потом термин",
-           ], [("../assets/img/case-vkusvill-platforma/03-methodology.jpg", "Ядро методологии: принципы и инструменты", "")]),
+           ], [("../assets/img/case-methodology-platform-ai/03-methodology.jpg", "Ядро методологии: принципы и инструменты", "")]),
           ("Прозрачная очередь задач команды", [
             {"b": "Боль:", "p": "заказчики не видели, что в работе, когда ждать изменений и у кого уточнять. Беклог жил в табличке."},
             {"b": "Почему так:"},
             "Канбан со статусами и возможность оставить комментарий по своей задаче (например, поменялся статус проекта)",
             "Фильтры по ответственным, доменам и приоритету",
             "Видны горящие задачи — фокус методологов на том, что важно сейчас",
-           ], [("../assets/img/case-vkusvill-platforma/04-backlog.jpg", "Беклог методологов", "Имена скрыты")]),
+           ], [("../assets/img/case-methodology-platform-ai/04-backlog.jpg", "Беклог методологов", "Имена скрыты")]),
           ("Вопросу есть куда прийти", [
             {"b": "Боль:", "p": "не было единого места для вопросов и сообщений о неточностях. Запросы терялись в личках и чатах."},
             {"b": "Почему так:"},
             "Форма с типом, приоритетом и тегами — сразу попадает в беклог",
             "Методолог отвечает в течение 24 часов",
             "Любой может указать на ошибку в материале — база живая",
-           ], [("../assets/img/case-vkusvill-platforma/05-request.jpg", "Форма запроса методологу", "Имя и почта скрыты")]),
+           ], [("../assets/img/case-methodology-platform-ai/05-request.jpg", "Форма запроса методологу", "Имя и почта скрыты")]),
           ("Роли и доступ под контролем", [
             {"b": "Боль:", "p": "внутренние и внешние материалы лежали вперемешку — кто что может видеть и редактировать, было непонятно."},
             "Новый пользователь и выдача кода доступа — в пару кликов",
-            "Сводка ролей: 79 клиентократов, 7 экспертов, 4 методолога, 2 админа",
-           ], [("../assets/img/case-vkusvill-platforma/06-new-user.jpg", "Новый пользователь и выдача кода доступа", ""),
-               ("../assets/img/case-vkusvill-platforma/07-access.jpg", "Управление доступом: сводка ролей и матрица доступа", "Имена, почта и коды доступа скрыты")]),
+            "Сводка ролей: 79 участников команд, 7 экспертов, 4 методолога, 2 админа",
+           ], [("../assets/img/case-methodology-platform-ai/06-new-user.jpg", "Новый пользователь и выдача кода доступа", ""),
+               ("../assets/img/case-methodology-platform-ai/07-access.jpg", "Управление доступом: сводка ролей и матрица доступа", "Имена, почта и коды доступа скрыты")]),
           ("Обмен опытом — в одном календаре", [
             {"b": "Боль:", "p": "удачные решения команд почти не передавались. Батлы, воркшопы и встречи жили разрозненно."},
             {"b": "Почему так:"},
             "Все форматы: батлы кейсов, воркшопы, общие встречи",
             "Фильтры по месяцам и статусам — видно прошедшее и будущее",
             "Бот автоматически публикует во всех Telegram-чатах",
-           ], [("../assets/img/case-vkusvill-platforma/08-events.jpg", "Календарь мероприятий", "Имена скрыты")]),
+           ], [("../assets/img/case-methodology-platform-ai/08-events.jpg", "Календарь мероприятий", "Имена скрыты")]),
         ]),
 
         ("h2", "Результат"),
-        ("p", "Скорость и качество материалов выросли в разы"),
+        ("p", "Методология, практики, кейсы и обсуждения собраны на одной платформе, правки выходят за часы"),
         ("h2", "Ключевые цифры"),
-        ("numbers", [("15 млн", "экономия компании: платформа собрана без команды разработки"),
-                     ("92", "пользователя на платформе"),
+        ("numbers", [("92", "пользователя на платформе"),
                      ("3 минуты", "на деплой: итерации измеряются часами, а не спринтами")]),
         ("h2", "Что изменилось"),
         ("compare", [
@@ -303,7 +302,7 @@ CASES = [
           ("Вопросы и ошибки теряются", "Форма запроса: ответ за 24 часа"),
           ("Опыт команд не виден остальным", "Календарь обмена опытом и прозрачный беклог"),
         ]),
-        ("h2", "Что это значит для ВкусВилла"),
+        ("h2", "Что это значит для компании"),
         ("list", [
           ("Знания перестают теряться:", "документы, кейсы и регламенты — в одном пространстве с быстрым поиском и навигацией"),
           ("Скорость вместо согласований:", "вайбкодинг даёт рабочий продукт за дни. Правки — за часы, без долгого цикла разработки"),
@@ -311,7 +310,7 @@ CASES = [
         ]),
         ("p", "Главная мысль:", "методолог, вооружённый ИИ, закрывает задачи, которые раньше требовали целой ИТ-команды. Это новая скорость работы со знаниями."),
       ],
-      related=["ecom-6-pager","urbantech","vkusvill"]),
+      related=["ecom-6-pager","urbantech","blue-ocean-retail"]),
 
  dict(slug="strat-workshop", tag="strat", client="Платформа для поиска работы · стратегический воркшоп", nda=True,
       task="Определить формат и целевую аудиторию мероприятия, который ляжет в стратегию сегмента на 2027 год",
@@ -389,7 +388,7 @@ CASES = [
         ("Вика, спасибо тебе за организацию и за помощь! Очень продуктивно получилось","Менеджер по продуктовому маркетингу B2B"),
         ("Да, Вика, спасибо, мы точно в позитивной динамике — это большой результат","Руководитель команды организации мероприятий"),
       ],
-      related=["avito-partnerstva","seven-agents","ecom-6-pager"]),
+      related=["partner-strat-session","seven-agents","ecom-6-pager"]),
 
  dict(slug="ecom-6-pager", tags=["ai", "edu"], client="Федеральная e-com · 6-pager с ИИ-агентами", nda=True,
       task="5 стратегических инициатив к защите за 2 дня вместо 30",
@@ -476,16 +475,16 @@ CASES = [
                ("1 страница","вместо 20+"),
                ("1 кнопка","для клиента")],
       shot=("../assets/img/case-urbantech/report-example.jpg","Реальное заключение агента: вердикт и оценка «Да/Нет» по 10 критериям. Название идеи, формулировки критериев и обоснования скрыты — коммерческая тайна"),
-      related=["seven-agents","avito-partnerstva"]),
+      related=["seven-agents","partner-strat-session"]),
 
- dict(slug="avito-partnerstva", tag="strat", client="Avito · стратсессия направления",
+ dict(slug="partner-strat-session", tag="strat", client="Медийная реклама · стратсессия направления",
       task="Дизайн и фасилитация стратегической сессии направления",
       figure="CJM → скоринг → пре-мортем", figure_note="полный контур: от карты пути до стресс-теста решений",
-      hero_meta={"Клиент":"Avito, направление \"Партнерства\"",
+      hero_meta={"Клиент":"Направление медийной рекламы крупной технологической компании",
                  "Продукт":"Стратегическая сессия направления: CJM, скоринг гипотез, пре-мортем",
-                 "Участники":"Команда направления \"Партнерства\"",
+                 "Участники":"Команда по работе с партнерами",
                  "Моя роль":"Дизайн сессии под запрос, методология, фасилитация"},
-      context="Направлению «Партнёрства» нужно было собрать команду на общую картину: где партнёрская механика реально двигает метрики, какие гипотезы стоит проверять первыми и что может убить каждую из них.",
+      context="Команде по работе с партнерами нужно было собрать общую картину: где партнерская механика двигает метрики, какие гипотезы проверять первыми и что может убить каждую из них.",
       client_task="«Нужна сессия с конкретным результатом: не список идей, а проверенные приоритеты, за которые команда готова отвечать».",
       steps=[
         ("Дизайн сессии под запрос","Собрала методологию под конкретную задачу направления: последовательность CJM → скоринг → пре-мортем."),
@@ -496,16 +495,16 @@ CASES = [
       results=[("3 инструмента","CJM, скоринг, пре-мортем — в одном контуре сессии"),
                ("портфель","приоритизированных гипотез с картой рисков на выходе")],
       how_counted="Состав и последовательность инструментов — из программы сессии; результат — артефакты, переданные команде после сессии.",
-      related=["strat-workshop","vkusvill"]),
+      related=["strat-workshop","blue-ocean-retail"]),
 
- dict(slug="vkusvill", tag="edu", client="ВкусВилл · стратегия голубого океана",
+ dict(slug="blue-ocean-retail", tag="edu", client="Розничная сеть · стратегия голубого океана",
       task="Тренинг по стратегии голубого океана для команды",
-      figure="Blue Ocean", figure_note="методология ВкусВилла — хрестоматийный пример голубого океана в России",
-      hero_meta={"Клиент":"ВкусВилл",
+      figure="Blue Ocean", figure_note="инструменты стратегии на задачах самой компании",
+      hero_meta={"Клиент":"Розничная сеть",
                  "Продукт":"Тренинг по стратегии голубого океана",
-                 "Участники":"Команда ВкусВилла",
-                 "Моя роль":"Адаптация программы под контекст компании, проведение тренинга, сертифицированный Blue Ocean Strategy Practitioner"},
-      context="ВкусВилл — компания, которую в самой методологии голубого океана приводят как пример создания нового пространства спроса на российском рынке. Команде нужен был рабочий инструментарий этой стратегии — не обзорная лекция.",
+                 "Участники":"Команда компании",
+                 "Моя роль":"Адаптация программы под контекст компании, проведение тренинга"},
+      context="Команде розничной сети нужен был рабочий инструментарий стратегии голубого океана, а не обзорная лекция.",
       client_task="«Хотим, чтобы команда владела инструментами стратегии голубого океана и умела применять их к собственным задачам».",
       steps=[
         ("Адаптация программы под контекст компании","Кейсы и упражнения собраны на материале задач самой компании, а не на абстрактных примерах."),
@@ -513,9 +512,9 @@ CASES = [
         ("Практика на реальных задачах","Команда прошла полный цикл: от анализа текущей кривой ценности до формулировки ходов в незанятое пространство спроса."),
       ],
       results=[("100%","практики на задачах компании, ноль абстрактных кейсов"),
-               ("BOS","сертифицированная методология Blue Ocean Strategy")],
+               ("BOS","методология Blue Ocean Strategy")],
       how_counted="Программа тренинга построена целиком на рабочих задачах заказчика — подтверждается составом упражнений программы.",
-      related=["sistemnoe-myshlenie","avito-partnerstva"]),
+      related=["sistemnoe-myshlenie","partner-strat-session"]),
 
  dict(slug="bank-top20", tag="edu", client="Банк топ-20 · пересборка системы обучения", nda=True,
       task="Пересборка системы обучения клиентской группы",
@@ -537,22 +536,21 @@ CASES = [
       related=["castorama","change-management"]),
 
  dict(slug="castorama", tag="edu", client="Castorama · марафон по лидерству",
-      task="Онлайн-марафон по лидерству на 1 500 сотрудников одновременно (2019 год)",
+      task="Онлайн-марафон по лидерству на 1 500 сотрудников одновременно",
       figure="1 500", figure_note="сотрудников проходили марафон одновременно",
-      hero_meta={"Клиент":"Castorama",
-                 "Продукт":"Корпоративный онлайн-марафон по лидерству, 2019",
+      hero_meta={"Компания":"Castorama Russia, работа в штате",
+                 "Продукт":"Корпоративный онлайн-марафон по лидерству",
                  "Участники":"1 500 сотрудников одновременно",
-                 "Моя роль":"Руководитель проекта, концепция марафона, производство и запуск"},
+                 "Моя роль":"Руководитель направления обучения: руководитель проекта, концепция марафона, производство и запуск"},
       context="Крупному ритейлеру нужен был массовый формат развития лидерства — живой и лёгкий для участия, а не обязательный курс «для галочки».",
       client_task="«Нужен формат по лидерству, который дойдёт до всей компании и который люди будут проходить добровольно».",
       steps=[
         ("Концепция марафона","Формат онлайн-марафона вместо классического курса: короткие задания, соревновательная динамика, командный зачёт."),
         ("Производство и запуск","Сборка контента, коммуникационная кампания внутри компании, одновременный старт на 1 500 участников."),
       ],
-      results=[("1 500","сотрудников одновременно в марафоне"),
-               ("2019","год запуска")],
+      results=[("1 500","сотрудников одновременно в марафоне")],
       how_counted="Число одновременных участников — из внутренних коммуникаций проекта.",
-      related=["bank-top20","vkusvill"]),
+      related=["bank-top20","blue-ocean-retail"]),
 
  dict(slug="sistemnoe-myshlenie", tag="edu", client="Системное мышление · программа для CEO-1/2",
       task="Модульная программа для лидеров: анализ, решения, структурирование, критическое мышление",
@@ -572,15 +570,15 @@ CASES = [
       results=[("4","модуля программы"),
                ("CEO-1/2","целевые уровни участников")],
       how_counted="Состав программы — из учебного плана; целевая аудитория — из ТЗ заказчиков программ.",
-      related=["change-management","vkusvill"]),
+      related=["change-management","blue-ocean-retail"]),
 
  dict(slug="change-management", tag="edu", client="Управление изменениями · тренинг Prosci",
       task="Change management для руководителей",
-      figure="Prosci", figure_note="в основе — сертифицированная методология Prosci Change Management",
+      figure="Prosci", figure_note="в основе — методология Prosci Change Management",
       hero_meta={"Клиент":"Корпоративные программы",
                  "Продукт":"Тренинг по управлению изменениями",
                  "Участники":"Руководители",
-                 "Моя роль":"Тренер, сертификация Prosci Change Management"},
+                 "Моя роль":"Тренер. Программа построена на методологии Prosci Change Management"},
       context="Изменения проваливаются не на уровне стратегии, а на уровне людей, которым предстоит работать по-новому. Руководителям нужен инструментарий проведения изменений — от спонсорства до работы с сопротивлением.",
       client_task="«Научите руководителей доводить изменения до результата, а не до приказа о внедрении».",
       steps=[
@@ -589,7 +587,7 @@ CASES = [
         ("Практика на живом изменении","Каждый участник работает с реальным изменением из своей зоны ответственности."),
       ],
       results=[("Prosci","методологическая база тренинга")],
-      how_counted="Методологическая база подтверждается сертификацией Prosci Change Management.",
+      how_counted="Методологическая база тренинга: роли и инструменты подхода Prosci Change Management, перечисленные в шагах программы.",
       related=["sistemnoe-myshlenie","bank-top20"]),
 
 ]
@@ -668,7 +666,7 @@ def tag_html(key, href=None):
 
 def tags_html(c, hub_depth=None):
     """Метки кейса. С hub_depth метки — ссылки на /cases с включённым фильтром по метке."""
-    parts = [tag_html(k, f'{"../" * hub_depth}cases/index.html#{k}' if hub_depth is not None else None)
+    parts = [tag_html(k, f'/cases/#{k}' if hub_depth is not None else None)
              for k in tags_of(c)]
     return parts[0] if len(parts) == 1 else '<span class="tags">' + "".join(parts) + '</span>'
 
@@ -746,12 +744,12 @@ def page(title, body, desc="", depth=0):
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="{pref}index.html">Виктория <span>Уткина</span></a>
+    <a class="logo" href="/">Виктория <span>Уткина</span></a>
     <nav class="nav">
-      <a href="{pref}index.html#products">Продукты</a>
-      <a href="{pref}cases/index.html">Кейсы</a>
-      <a href="{pref}index.html#book">Книга</a>
-      <a href="{pref}index.html#about">Обо мне</a>
+      <a href="/#products">Продукты</a>
+      <a href="/cases/">Кейсы</a>
+      <a href="/#book">Книга</a>
+      <a href="/#about">Обо мне</a>
     </nav>
     <button class="theme-btn" id="theme-toggle" aria-label="Светлая или темная тема" title="Сменить тему">◐</button>
     <button class="burger" aria-label="Меню"><i></i></button>
@@ -779,9 +777,9 @@ def page(title, body, desc="", depth=0):
 m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],
 k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}})
 (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-ym(98917313, "init", {{clickmap:true, trackLinks:true, accurateTrackBounce:true}});
+ym(114128142, "init", {{clickmap:true, trackLinks:true, accurateTrackBounce:true}});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/98917313" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/114128142" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 </body>
 </html>"""
 
@@ -791,7 +789,7 @@ def build_index():
     # если кейсы заполнили строки сетки без остатка — CTA растягивается на всю ширину,
     # иначе на десктопе добирает свободные ячейки последней строки
     rest = len(tiles) % 4
-    tiles.append(cta_tile("Смотреть все кейсы", "cases/index.html",
+    tiles.append(cta_tile("Смотреть все кейсы", "/cases/",
                           cls=f' cta-span{4 - rest}' if rest in (1, 2) else '',
                           style=' style="grid-column:1/-1"' if rest == 0 else ''))
     tiles_html = "\n".join(tiles)
@@ -821,11 +819,15 @@ def build_index():
   </div>
 </section>
 
-<section class="logos" aria-label="Компании-клиенты">
+<section class="logos" aria-label="Где работала и заказчики">
   <div class="wrap">
-    <p class="logos-label">20+ компаний-клиентов</p>
+    <p class="logos-label">Где работала</p>
     <div class="logos-row">
-      <span>SUN InBev</span><span>РОЛЬФ</span><span>Уралсиб</span><span>Хоум Кредит Банк</span><span>Global Broker League</span><span>Global Creative Hub</span><span>MBA Рыбакова</span><span>Avito</span><span>Kaspersky</span><span>McDonald&#39;s</span><span>УрбанТех</span><span>Собинбанк</span><span>ЭКОПСИ Консалтинг</span><span>Ozon</span><span>Норникель</span><span>Газпромбанк</span><span>X5 Retail Group</span><span>Castorama</span><span>Novartis</span><span>YES Apart</span><span>ВТБ Страхование</span><span>MPStats</span><span>ВкусВилл</span><span>Beyond Taylor</span><span>МТС</span><span>Danone</span><span>Контур</span>
+      <span>Авито</span><span>Хоум Кредит Банк</span><span>Castorama</span><span>РОЛЬФ</span><span>SUN InBev</span><span>ЭКОПСИ Консалтинг</span>
+    </div>
+    <p class="logos-label" style="margin-top:28px">Заказчики</p>
+    <div class="logos-row">
+      <span>УрбанТех</span><span>технологические компании</span><span>e-commerce</span><span>банки</span><span>телеком</span><span>FMCG</span><span>розничные сети</span><span>логистика</span><span>образовательные проекты</span>
     </div>
   </div>
 </section>
@@ -907,12 +909,10 @@ def build_index():
         </ul>
       </div>
       <div class="verify-card">
-        <h3>Образование и сертификации</h3>
+        <h3>Образование</h3>
         <ul>
           <li>Клиническая психология — ИППиП</li>
           <li>Филология и педагогика — МПГУ</li>
-          <li>Prosci Change Management</li>
-          <li>Blue Ocean Strategy Practitioner</li>
           <li>Школа продюсирования Николая Картозии</li>
         </ul>
       </div>
@@ -1006,7 +1006,7 @@ def build_cases_hub():
 <section>
   <div class="wrap">
     <span class="kicker">Кейсы</span>
-    <h2>Все кейсы</h2>
+    <h1 style="font-size:clamp(26px,3.6vw,40px);margin-bottom:26px">Все кейсы</h1>
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="all">Все</button>
 {filters}
@@ -1112,7 +1112,7 @@ def case_shell(c, inner):
     sub_html = f'    <p class="case-sub">{esc(c["subtitle"])}</p>\n' if c.get("subtitle") else ""
     tiles = [case_tile(CASE_BY_SLUG[s], 1) for s in c.get("related", [])]
     tiles += [cta_tile(f"Продукт: {PRODUCT_BY_TAG[k]['name']}", f"../products/{PRODUCT_BY_TAG[k]['slug']}.html") for k in tags_of(c)]
-    tiles.append(cta_tile("Все кейсы", "index.html"))
+    tiles.append(cta_tile("Все кейсы", "/cases/"))
     body = f"""
 <section class="case-hero">
   <div class="wrap">
@@ -1215,7 +1215,7 @@ def build_product(p):
     stages = "\n".join(step_html(i + 1, t, f'<p>{esc(nd(d))}</p>') for i, (t, d) in enumerate(p["stages"]))
     deliver = "\n".join(f'      <div class="deliver"><b>{esc(t)}</b><p>{esc(nd(d))}</p></div>' for t, d in p["deliver"])
     # все кейсы продукта (по его тегу) + выход на общий список
-    rel = "\n".join([case_tile(c, 1) for c in CASES if p["tag"] in tags_of(c)] + [cta_tile("Все кейсы", "../cases/index.html")])
+    rel = "\n".join([case_tile(c, 1) for c in CASES if p["tag"] in tags_of(c)] + [cta_tile("Все кейсы", "/cases/")])
     body = f"""
 <section class="product-hero">
   <div class="wrap">
@@ -1326,100 +1326,53 @@ with open(os.path.join(ROOT, "assets", "css", "style.css"), "rb") as _css:
     ASSET_VER = hashlib.sha1(_css.read() + SITE_JS.encode("utf-8")).hexdigest()[:10]
 
 # ─────────────────────────────── сборка ───────────────────────────────
+SITE = "https://vi-utkina.ru"
+
+def canonical_url(path):
+    """Основной адрес страницы: сайт отдает одну страницу по нескольким адресам (с .html и без)"""
+    if path == "index.html":
+        return SITE + "/"
+    if path.endswith("/index.html"):
+        return SITE + "/" + path[:-len("index.html")]
+    return SITE + "/" + path
+
+# старые адреса кейсов -> новые. Правил 301 на сервере нет, поэтому HTML-переадресация
+REDIRECTS = {
+    "avito-partnerstva": "partner-strat-session",
+    "vkusvill": "blue-ocean-retail",
+    "vkusvill-platforma": "methodology-platform-ai",
+}
+
+def redirect_page(new_path):
+    url = new_path if new_path.startswith("http") else SITE + new_path
+    return f"""<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Страница переехала</title>
+<link rel="canonical" href="{url}">
+<meta http-equiv="refresh" content="0; url={new_path}">
+<script>location.replace("{new_path}");</script>
+</head>
+<body>
+<p><a href="{new_path}">Страница переехала</a></p>
+</body>
+</html>
+"""
+
 def write(path, content, strip_periods=True):
     # глобально: точка в конце буллита не нужна (кроме дословных страниц)
     if strip_periods:
         content = re.sub(r'\.(\s*</li>)', r'\1', content)
         # и точка после закрывающей кавычки, если абзац кончается кавычкой
         content = re.sub(r'([»”"])\.(\s*</(?:p|h1|h2|h3|figcaption)>)', r'\1\2', content)
+    if path.endswith(".html") and "</head>" in content and 'rel="canonical"' not in content:
+        content = content.replace("</head>", f'<link rel="canonical" href="{canonical_url(path)}">\n</head>', 1)
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w", encoding="utf-8") as f:
         f.write(content)
     print("  +", path)
-
-# ─────────────────── «Личный номер года»: 9 дословных страниц из content/god/ ───────────────────
-def md_inline(s):
-    s = esc(s)
-    s = re.sub(r'\*\*([^*]+)\*\*', r'<b>\1</b>', s)
-    s = re.sub(r'(?<!\*)\*(?!\*)([^*\n]+)\*(?!\*)', r'<i>\1</i>', s)
-    return s
-
-def md_to_html(md):
-    lines = md.split("\n")
-    out, i = [], 0
-    def is_blank(l): return not l.strip()
-    while i < len(lines):
-        l = lines[i]
-        if is_blank(l):
-            i += 1; continue
-        if l.startswith("# "):
-            out.append(f"<h1>{md_inline(l[2:].strip())}</h1>"); i += 1; continue
-        if l.lstrip().startswith("|"):
-            rows = []
-            while i < len(lines) and lines[i].lstrip().startswith("|"):
-                cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
-                rows.append(cells); i += 1
-            rows = [r for r in rows if not all(re.fullmatch(r':?-+:?', c or '-') for c in r)]  # строка выравнивания
-            rows = [r for r in rows if any(c for c in r)]                                      # пустая шапка
-            body = "\n".join("<tr>" + "".join(f"<td>{md_inline(c)}</td>" for c in r) + "</tr>" for r in rows)
-            out.append(f'<div class="tbl-wrap"><table>{body}</table></div>'); continue
-        m = re.match(r'^(\s*)-\s+(.*)$', l)
-        if m:
-            items, stack = [], []  # плоский разбор двух уровней
-            out.append("<ul>")
-            depth_prev = 0
-            while i < len(lines):
-                mm = re.match(r'^(\s*)-\s+(.*)$', lines[i])
-                if not mm:
-                    if is_blank(lines[i]):
-                        # пустая строка не рвёт список, если дальше снова пункт
-                        j = i
-                        while j < len(lines) and is_blank(lines[j]): j += 1
-                        if j < len(lines) and re.match(r'^\s*-\s+', lines[j]):
-                            i = j; continue
-                    break
-                depth = 1 if len(mm.group(1)) > 3 else 0
-                if depth > depth_prev: out.append("<ul>")
-                if depth < depth_prev: out.append("</ul>")
-                out.append(f"<li>{md_inline(mm.group(2))}</li>")
-                depth_prev = depth; i += 1
-            if depth_prev: out.append("</ul>")
-            out.append("</ul>"); continue
-        m = re.match(r'^\s*(\d+)\.\s+(.*)$', l)
-        if m:
-            out.append(f'<ol start="{m.group(1)}">')
-            while i < len(lines):
-                mm = re.match(r'^\s*\d+\.\s+(.*)$', lines[i])
-                if not mm: break
-                out.append(f"<li>{md_inline(mm.group(1))}</li>"); i += 1
-            out.append("</ol>"); continue
-        out.append(f"<p>{md_inline(l.strip())}</p>"); i += 1
-    return "\n".join(out)
-
-def build_god_page(n, md):
-    nums = "".join(
-        f'<span class="gy-cur">{k}</span>' if k == n else f'<a href="{k}.html">{k}</a>'
-        for k in range(1, 10))
-    nav = f'<nav class="gy-nav" aria-label="Личные годы">{nums}</nav>'
-    prev_a = f'<a class="btn btn-outline" href="{n-1}.html">← Год {n-1}</a>' if n > 1 else '<span></span>'
-    next_a = f'<a class="btn btn-outline" href="{n+1}.html">Год {n+1} →</a>' if n < 9 else '<span></span>'
-    body = f"""
-<section class="case-hero">
-  <div class="wrap">
-    <span class="kicker">Личный номер года</span>
-    {nav}
-  </div>
-</section>
-<section style="padding-top:36px">
-  <div class="wrap case-body god-body">
-{md_to_html(md)}
-    <div class="gy-pager">{prev_a}{next_a}</div>
-  </div>
-</section>
-"""
-    return page(f"Личный год {n} — Виктория Уткина", body,
-                f"Личный номер года {n}: энергия, задачи и ловушки периода.", depth=1)
 
 def main():
     check_data()
@@ -1430,15 +1383,23 @@ def main():
         write(f"cases/{c['slug']}.html", build_case(c))
     for p in PRODUCTS:
         write(f"products/{p['slug']}.html", build_product(p))
-    god_dir = os.path.join(ROOT, "content", "god")
+    # «Личный год» переехал на lunario.online (решение 8 ноября): здесь остаются переадресации
     god_n = 0
     for n in range(1, 10):
-        src = os.path.join(god_dir, f"{n}.md")
-        if os.path.exists(src):
-            md = open(src, encoding="utf-8").read()
-            write(f"god/{n}.html", build_god_page(n, md), strip_periods=False)
-            god_n += 1
-    print("Готово:", 3 + len(CASES) + len(PRODUCTS) + god_n, "файлов")
+        write(f"god/{n}.html", redirect_page(f"https://lunario.online/god/{n}.html"), strip_periods=False)
+        god_n += 1
+    assert not set(REDIRECTS) & set(CASE_BY_SLUG), "старый адрес совпадает с действующим"
+    for old, new in REDIRECTS.items():
+        write(f"cases/{old}.html", redirect_page(f"/cases/{new}.html"), strip_periods=False)
+    # карта сайта: главная, кейсы, продукты. Страницы god в карту не входят: переехали на lunario.online
+    urls = ["/", "/cases/"] + [f"/cases/{c['slug']}.html" for c in CASES] + [f"/products/{p['slug']}.html" for p in PRODUCTS]
+    sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+               + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls)
+               + "</urlset>\n")
+    write("sitemap.xml", sitemap, strip_periods=False)
+    write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", strip_periods=False)
+    print("Готово:", 3 + len(CASES) + len(PRODUCTS) + god_n, "файлов, переадресаций:", len(REDIRECTS) + god_n, "карта сайта:", len(urls), "адресов")
 
 if __name__ == "__main__":
     main()
