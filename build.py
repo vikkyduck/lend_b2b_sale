@@ -5,16 +5,23 @@ import os, html, re, hashlib, json, subprocess, datetime
 from urllib.parse import urljoin
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+SITE = "https://vi-utkina.ru"
+AUTHOR = "Виктория Уткина"
 TG_CHANNEL = "https://telegram.me/profi_rulit"
-TG_PERSONAL = "https://telegram.me/Vikky_Duck"
 EMAIL = "vikavika.utkina@yandex.ru"
 LITRES = "https://www.litres.ru/book/viktoriya-utkina/ekspert-pod-kluch-kak-izvlech-i-upakovat-znaniya-dlya-biz-72669850/"
+BOOK_TITLE = "Эксперт под ключ: как извлечь и упаковать знания для бизнеса"
+BOOK_YEAR = "2025"
+AGENCY_URL = "https://withoutwater.ru"
+JOB_TITLE = "Владелица агентства «Без Воды»"
+METRIKA = 114128142
 
-TAGS = {
-    "strat":  ("Стратсессии", "tag-strat"),
-    "ai":     ("ИИ-инструменты", "tag-ai"),
-    "edu":    ("Обучение лидеров", "tag-edu"),
-}
+# юридические страницы: текст документа лежит в content/legal/<slug>.html, название — оно же подпись ссылки в подвале
+LEGAL = [
+    dict(slug="personal-data", title="Политика конфиденциальности"),
+    dict(slug="pub_oferta", title="Публичная оферта"),
+    dict(slug="consent_pd", title="Согласие на обработку персональных данных"),
+]
 
 # ─────────────────────────────── кейсы ───────────────────────────────
 CASES = [
@@ -595,7 +602,10 @@ CASES = [
 
 # ─────────────────────────────── продукты ───────────────────────────────
 PRODUCTS = [
- dict(slug="stratsessii", num="01", tag="strat", name="Стратегические сессии",
+ # name — короткое название (плашки, карточки, метки кейсов), tag_name — метка, если она короче названия,
+ # h1 — заголовок страницы под поисковый спрос; title страницы = h1 + имя автора
+ dict(slug="stratsessii", num="01", tag="strat", name="Стратегические сессии", tag_name="Стратсессии",
+      h1="Проведение стратегических сессий для команд и компаний",
       short="«Стратсессия 360»: рынок, смежные отрасли и сценарии за пределами привычного поля зрения. Преворк делают ИИ-агенты — команда тратит время на решения, а не на подготовку.",
       lead="«Стратсессия 360» позволяет выйти за пределы обсуждения внутренних процессов и рассмотреть рынок, смежные отрасли и сценарии, которые раньше находились вне поля зрения команды. Всю подготовительную работу выполняют ИИ-агенты: собирают данные, проводят анализ и формируют сценарии. Команда тратит рабочее время не на подготовку материалов, а непосредственно на принятие решений.",
       term="2 дня очной работы + 2 недели ИИ-аналитики между блоками · follow-up через 6 недель",
@@ -611,7 +621,8 @@ PRODUCTS = [
         ("Доступ к ИИ-агентам на 12 месяцев","команда самостоятельно проверяет новые гипотезы по мере появления"),
         ("Методологический пакет","шаблоны, матрицы, чек-листы, формат защиты гипотез"),
       ]),
- dict(slug="ai-agenty", num="02", tag="ai", name="ИИ-инструменты",
+ dict(slug="ai-agenty", num="02", tag="ai", name="ИИ-агенты",
+      h1="ИИ-агенты для бизнеса: разработка и внедрение ИИ",
       short="ИИ-агенты и платформы, собранные под методологию и критерии компании, берут на себя сбор информации, анализ и первичную оценку. Руководитель не тратит на это время, а фокусируется на главном: принятии стратегических и управленческих решений.",
       lead="ИИ-инструменты готовят основу для принятия решений: собирают данные, рассчитывают сценарии, проводят скоринг идей и переносят методологию компании в рабочую платформу, которой команда пользуется каждый день. Окончательное решение всегда принимает руководитель. При этом логика принятия решений сохраняется внутри компании и становится её самостоятельным активом.",
       term="пилотный контур — от 4 недель (зависит от контура данных компании)",
@@ -627,7 +638,8 @@ PRODUCTS = [
         ("Автоматические заключения","готовые документы для руководства и комитетов: оценки, риски, рекомендации"),
         ("Логика решений как актив","критерии и методология остаются внутри компании"),
       ]),
- dict(slug="obuchenie-menedzherov", num="03", tag="edu", name="Обучение лидеров",
+ dict(slug="obuchenie-menedzherov", num="03", tag="edu", name="Обучение руководителей",
+      h1="Обучение руководителей: тренинги и модульные программы",
       short="Системное и критическое мышление, структурированная коммуникация (Минто, SCQA, 6-pager), управление изменениями. Модульные программы для CEO-1 и CEO-2.",
       lead="Системное и критическое мышление, структурированная коммуникация по моделям «Пирамида Минто», SCQA и 6-pager, а также управление изменениями. Модульные программы предназначены для руководителей уровней CEO-1 и CEO-2. Результат — повышение скорости подготовки и утверждения решений бордом и качества управленческих документов.",
       term="модульный формат: от 4 сессий по 60 минут до многомодульных программ — под запрос компании",
@@ -645,6 +657,14 @@ PRODUCTS = [
       ]),
 ]
 
+# Метки кейсов и фильтр на /cases берутся из продуктов: у каждого продукта своя метка
+TAGS = {p["tag"]: (p.get("tag_name", p["name"]), f'tag-{p["tag"]}') for p in PRODUCTS}
+
+def product_names(last=", "):
+    """Названия продуктов одной строкой для title и описаний: «стратегические сессии, ИИ-агенты, обучение руководителей»"""
+    names = [n if n[:2].isupper() else n[0].lower() + n[1:] for n in (p["name"] for p in PRODUCTS)]
+    return ", ".join(names[:-1]) + last + names[-1]
+
 # Порядок кейсов везде один — порядок в CASES (новые сверху). Индексы для связей:
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
 PRODUCT_BY_TAG = {p["tag"]: p for p in PRODUCTS}
@@ -657,6 +677,9 @@ def nd(s):
     s = s.rstrip()
     return s[:-1] if s.endswith('.') else s
 
+def case_path(c): return f"/cases/{c['slug']}.html"
+def product_path(p): return f"/products/{p['slug']}.html"
+
 def tags_of(c):
     """Кейс может относиться к нескольким категориям: tags=[...] или один tag."""
     return c.get("tags") or [c["tag"]]
@@ -665,9 +688,9 @@ def tag_html(key, href=None):
     name, cls = TAGS[key]
     return f'<a class="tag {cls}" href="{href}">{name}</a>' if href else f'<span class="tag {cls}">{name}</span>'
 
-def tags_html(c, hub_depth=None):
-    """Метки кейса. С hub_depth метки — ссылки на /cases с включённым фильтром по метке."""
-    parts = [tag_html(k, f'/cases/#{k}' if hub_depth is not None else None)
+def tags_html(c, links=False):
+    """Метки кейса. С links=True метки — ссылки на /cases с включённым фильтром по метке."""
+    parts = [tag_html(k, f'/cases/#{k}' if links else None)
              for k in tags_of(c)]
     return parts[0] if len(parts) == 1 else '<span class="tags">' + "".join(parts) + '</span>'
 
@@ -678,12 +701,11 @@ def check_data():
             if k not in TAGS: raise ValueError(f"кейс {c['slug']}: неизвестный тег {k}")
         for s in c.get("related", []):
             if s not in CASE_BY_SLUG: raise ValueError(f"кейс {c['slug']}: related → нет кейса {s}")
-    if set(TAGS) != set(PRODUCT_BY_TAG): raise ValueError("у каждого тега должен быть ровно один продукт")
 
 # ─── общие куски разметки (плитка, шаг, цифры, цитата, картинка) ───
-def case_tile(c, depth):
+def case_tile(c):
     """Плитка кейса: лента на главной, «похожие кейсы», кейсы продукта."""
-    return (f'      <a class="case-tile" href="{"../" * depth}cases/{c["slug"]}.html">{tags_html(c)}'
+    return (f'      <a class="case-tile" href="{case_path(c)}">{tags_html(c)}'
             f'<span class="client">{esc(c["client"])}</span><span class="arrow">→</span></a>')
 
 def cta_tile(label, href, cls="", style=""):
@@ -729,7 +751,6 @@ def shots_grid(items):
     return '\n    <div class="shots">\n' + "\n".join(fig_html(src, cap, cap, *wide) for src, cap, *wide in items) + '\n    </div>'
 
 # ─────────────── разметка schema.org (JSON-LD): только то, что видно на странице ───────────────
-SITE = "https://vi-utkina.ru"
 LD_PERSON = {"@id": SITE + "/#person"}
 LD_SITE = {"@id": SITE + "/#website"}
 
@@ -746,8 +767,9 @@ def ld_crumbs(*items):
         {"@type": "ListItem", "position": i + 1, "name": name, "item": SITE + path}
         for i, (name, path) in enumerate(items)]}
 
-def page(title, body, desc="", depth=0, ld=""):
-    pref = "../" * depth
+def page(title, body, desc="", head=""):
+    """Общая оболочка страницы. head — дополнительная разметка для <head> (JSON-LD, запрет индексации)"""
+    legal_links = "\n".join(f'      <li><a href="/{l["slug"]}">{l["title"]}</a></li>' for l in LEGAL)
     return f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -757,12 +779,12 @@ def page(title, body, desc="", depth=0, ld=""):
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link href="/assets/fonts/montserrat.css" rel="stylesheet">
-<link rel="stylesheet" href="{pref}assets/css/style.css?v={ASSET_VER}">
+<link rel="stylesheet" href="/assets/css/style.css?v={ASSET_VER}">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-120.png" type="image/png" sizes="120x120">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-{ld}</head>
+{head}</head>
 <body>
 <header class="site-header">
   <div class="wrap">
@@ -786,28 +808,26 @@ def page(title, body, desc="", depth=0, ld=""):
       <a href="mailto:{EMAIL}">{EMAIL}</a>
     </div>
     <ul>
-      <li><a href="{pref}personal-data">Политика конфиденциальности</a></li>
-      <li><a href="{pref}pub_oferta">Публичная оферта</a></li>
-      <li><a href="{pref}consent_pd">Согласие на обработку персональных данных</a></li>
+{legal_links}
     </ul>
   </div>
 </footer>
-<script src="{pref}assets/js/site.js?v={ASSET_VER}"></script>
+<script src="/assets/js/site.js?v={ASSET_VER}"></script>
 <!-- Yandex.Metrika -->
 <script type="text/javascript">
 (function(m,e,t,r,i,k,a){{m[i]=m[i]||function(){{(m[i].a=m[i].a||[]).push(arguments)}};
 m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],
 k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}})
 (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-ym(114128142, "init", {{clickmap:true, trackLinks:true, accurateTrackBounce:true}});
+ym({METRIKA}, "init", {{clickmap:true, trackLinks:true, accurateTrackBounce:true}});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/114128142" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/{METRIKA}" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 </body>
 </html>"""
 
 # ─────────────────────────────── главная ───────────────────────────────
 def build_index():
-    tiles = [case_tile(c, 0) for c in CASES]
+    tiles = [case_tile(c) for c in CASES]
     # если кейсы заполнили строки сетки без остатка — CTA растягивается на всю ширину,
     # иначе на десктопе добирает свободные ячейки последней строки
     rest = len(tiles) % 4
@@ -815,10 +835,10 @@ def build_index():
                           cls=f' cta-span{4 - rest}' if rest in (1, 2) else '',
                           style=' style="grid-column:1/-1"' if rest == 0 else ''))
     tiles_html = "\n".join(tiles)
-    chips = "\n".join(f'        <a class="chip" href="products/{p["slug"]}.html">{esc(p["name"])}</a>' for p in PRODUCTS)
+    chips = "\n".join(f'        <a class="chip" href="{product_path(p)}">{esc(p["name"])}</a>' for p in PRODUCTS)
     products_kicker = {3: "Три продукта", 4: "Четыре продукта"}.get(len(PRODUCTS), "Продукты")
 
-    prod_cards = "\n".join(f"""      <a class="product-card" href="products/{p['slug']}.html">
+    prod_cards = "\n".join(f"""      <a class="product-card" href="{product_path(p)}">
         <span class="num">{p['num']}</span>
         <h3>{esc(p['name'])}</h3>
         <p>{esc(nd(p['short']))}</p>
@@ -831,7 +851,7 @@ def build_index():
     <div class="hero-figure">
       <picture>
         <source srcset="assets/img/vika-figure.webp" type="image/webp">
-        <img src="assets/img/vika-figure.png" alt="Виктория Уткина" width="1151" height="1280">
+        <img src="assets/img/vika-figure.png" alt="{AUTHOR}" width="1151" height="1280">
       </picture>
     </div>
     <div>
@@ -903,8 +923,8 @@ def build_index():
     <img class="book-cover" src="assets/img/book-cover.webp" alt="Обложка книги «Эксперт под ключ»">
     <div>
       <span class="kicker">Книга</span>
-      <h2>«Эксперт под ключ: как извлечь и упаковать знания для бизнеса»</h2>
-      <p class="imprint">Литрес, 2025</p>
+      <h2>«{BOOK_TITLE}»</h2>
+      <p class="imprint">Литрес, {BOOK_YEAR}</p>
       <p class="desc">Книга систематизирует 20 лет практического опыта и предлагает фреймворк для извлечения и упаковки экспертных знаний в продукты для рынков B2C и B2B.</p>
       <a class="btn btn-primary" href="{LITRES}">Читать на Литрес</a>
     </div>
@@ -929,7 +949,7 @@ def build_index():
         <h3>Каналы и компания</h3>
         <ul>
           <li><a class="ext" href="{TG_CHANNEL}">Telegram-канал @profi_rulit</a></li>
-          <li><a class="ext" href="https://withoutwater.ru">Агентство «Без Воды» — withoutwater.ru</a></li>
+          <li><a class="ext" href="{AGENCY_URL}">Агентство «Без Воды» — withoutwater.ru</a></li>
           <li><a class="ext" href="{LITRES}">Книга «Эксперт под ключ» на Литрес</a></li>
         </ul>
       </div>
@@ -952,19 +972,6 @@ def build_index():
   </div>
 </section>
 
-<!-- ЭКРАН 7 «ОТЗЫВЫ»: скрыт до получения именных отзывов (HRD/CEO/собственник).
-     Разметка готова — раскомментировать и вставить тексты.
-<section id="testimonials">
-  <div class="wrap">
-    <span class="kicker">Отзывы</span>
-    <h2>Что говорят заказчики</h2>
-    <div class="verify-grid">
-      <div class="verify-card"><p>«Текст отзыва»</p><p class="muted" style="margin-top:12px"><b>Имя Фамилия</b> — должность, компания</p></div>
-    </div>
-  </div>
-</section>
--->
-
 <section id="work" style="background:var(--paper)">
   <div class="wrap">
     <span class="kicker">Безопасность данных</span>
@@ -985,9 +992,9 @@ def build_index():
     <span class="kicker">Управленческий опыт</span>
     <h2>Обо мне</h2>
     <div class="about-grid">
-      <img class="about-photo" src="assets/img/vika-photo.jpg" alt="Виктория Уткина">
+      <img class="about-photo" src="assets/img/vika-photo.jpg" alt="{AUTHOR}">
       <div>
-        <p class="about-intro">Владелица агентства «Без Воды» (<a class="ext" href="https://withoutwater.ru">withoutwater.ru</a>). 20 лет в сфере обучения взрослых. С 2012 года — корпоративный управленческий опыт: работа с клиентами, управление продуктом, командой и бюджетами.</p>
+        <p class="about-intro">{JOB_TITLE} (<a class="ext" href="{AGENCY_URL}">withoutwater.ru</a>). 20 лет в сфере обучения взрослых. С 2012 года — корпоративный управленческий опыт: работа с клиентами, управление продуктом, командой и бюджетами.</p>
         <div class="about-block">
           <h3>Корпоративный управленческий опыт</h3>
           <ul>
@@ -1011,31 +1018,32 @@ def build_index():
 </section>
 
 """
-    desc = "Стратегические сессии, ИИ-инструменты и обучение лидеров — для собственников и топ-команд."
-    # разметка повторяет блоки «Обо мне», «Цифровой след» и «Книга»: при правке этих блоков поправить и здесь
+    speaker_pages = re.findall(r'href="(https://whiteconf\.ru/[^"]+)"', body)
+    assert speaker_pages, "в блоке «Цифровой след» не нашлись страницы спикера для разметки"
+    names = product_names(" и ")
+    desc = f"{names[0].upper()}{names[1:]} — для собственников и топ-команд."
     ld = ld_script(
-        {"@type": "WebSite", **LD_SITE, "url": SITE + "/", "name": "Виктория Уткина", "description": desc,
+        {"@type": "WebSite", **LD_SITE, "url": SITE + "/", "name": AUTHOR, "description": desc,
          "inLanguage": "ru", "publisher": LD_PERSON},
-        {"@type": "Person", **LD_PERSON, "name": "Виктория Уткина", "url": SITE + "/",
+        {"@type": "Person", **LD_PERSON, "name": AUTHOR, "url": SITE + "/",
          "image": SITE + "/assets/img/vika-photo.jpg",
-         "jobTitle": "Владелица агентства «Без Воды»",
-         "worksFor": {"@type": "Organization", "name": "Без Воды", "url": "https://withoutwater.ru"},
-         "sameAs": [TG_CHANNEL] + re.findall(r'href="(https://whiteconf\.ru/[^"]+)"', body)},
-        {"@type": "Book", "name": "Эксперт под ключ: как извлечь и упаковать знания для бизнеса",
-         "author": LD_PERSON, "url": LITRES, "datePublished": "2025", "inLanguage": "ru"},
+         "jobTitle": JOB_TITLE,
+         "worksFor": {"@type": "Organization", "name": "Без Воды", "url": AGENCY_URL},
+         "sameAs": [TG_CHANNEL] + speaker_pages},
+        {"@type": "Book", "name": BOOK_TITLE, "author": LD_PERSON, "url": LITRES, "datePublished": BOOK_YEAR, "inLanguage": "ru"},
     )
-    return page("Виктория Уткина — официальная страница", body, desc, depth=0, ld=ld)
+    return page(f"{AUTHOR} — {product_names()}", body, desc, head=ld)
 
 # ─────────────────────────────── /cases ───────────────────────────────
 def build_cases_hub():
     cards = []
     for c in CASES:
         cards.append(f"""      <div class="case-card" data-tag="{' '.join(tags_of(c))}">
-        {tags_html(c, hub_depth=1)}
+        {tags_html(c, links=True)}
         <span class="client">{esc(c['client'])}</span>
         <p class="task">{esc(nd(c['task']))}</p>
         <div class="figure">{esc(c['figure'])}<small>{esc(nd(c['figure_note']))}</small></div>
-        <a class="go" href="{c['slug']}.html">Смотреть кейс →</a>
+        <a class="go" href="{case_path(c)}">Смотреть кейс →</a>
       </div>""")
     cards_markup = "\n".join(cards)
     filters = '\n'.join(f'      <button class="filter-btn" data-filter="{k}">{TAGS[k][0]}</button>' for k in TAGS)
@@ -1059,7 +1067,7 @@ def build_cases_hub():
          "isPartOf": LD_SITE, "about": LD_PERSON, "inLanguage": "ru"},
         ld_crumbs(("Главная", "/"), ("Кейсы", "/cases/")),
     )
-    return page("Кейсы — Виктория Уткина", body, "Кейсы: стратегические сессии, ИИ-инструменты, обучение лидеров.", depth=1, ld=ld)
+    return page(f"Кейсы — {AUTHOR}", body, f"Кейсы: {product_names()}.", head=ld)
 
 # ─────────── кейс из блоков: своя последовательность секций (длинные кейсы) ───────────
 def _block_items(items):
@@ -1152,13 +1160,13 @@ def case_shell(c, inner):
     """Страница кейса: шапка (метки — ссылки на фильтр), тело, «похожие кейсы» + выходы на продукт и все кейсы."""
     meta = "\n".join(f'      <div class="meta-row"><b>{esc(k)}</b><span>{esc(v)}</span></div>' for k, v in c["hero_meta"].items())
     sub_html = f'    <p class="case-sub">{esc(c["subtitle"])}</p>\n' if c.get("subtitle") else ""
-    tiles = [case_tile(CASE_BY_SLUG[s], 1) for s in c.get("related", [])]
-    tiles += [cta_tile(f"Продукт: {PRODUCT_BY_TAG[k]['name']}", f"../products/{PRODUCT_BY_TAG[k]['slug']}.html") for k in tags_of(c)]
+    tiles = [case_tile(CASE_BY_SLUG[s]) for s in c.get("related", [])]
+    tiles += [cta_tile(f"Продукт: {PRODUCT_BY_TAG[k]['name']}", product_path(PRODUCT_BY_TAG[k])) for k in tags_of(c)]
     tiles.append(cta_tile("Все кейсы", "/cases/"))
     body = f"""
 <section class="case-hero">
   <div class="wrap">
-    {tags_html(c, hub_depth=1)}
+    {tags_html(c, links=True)}
     <h1>{esc(c.get('h1') or c['task'])}</h1>
 {sub_html}    <div class="case-meta">
 {meta}
@@ -1179,7 +1187,7 @@ def case_shell(c, inner):
   </div>
 </section>
 """
-    path = f"/cases/{c['slug']}.html"
+    path = case_path(c)
     article = {"@type": "Article", "@id": SITE + path + "#article", "url": SITE + path, "mainEntityOfPage": SITE + path,
                "headline": c.get("h1") or c["task"], "description": c["task"],
                "author": LD_PERSON, "publisher": LD_PERSON, "isPartOf": LD_SITE, "inLanguage": "ru"}
@@ -1187,7 +1195,7 @@ def case_shell(c, inner):
     if first_img:
         article["image"] = urljoin(SITE + path, first_img.group(1))
     ld = ld_script(article, ld_crumbs(("Главная", "/"), ("Кейсы", "/cases/"), (c["client"], path)))
-    return page(f"{c['client']} — кейс — Виктория Уткина", body, c["task"], depth=1, ld=ld)
+    return page(f"{c['client']} — кейс — {AUTHOR}", body, c["task"], head=ld)
 
 # ─────────────────────────────── страница кейса ───────────────────────────────
 def build_case(c):
@@ -1196,7 +1204,6 @@ def build_case(c):
     steps = "\n".join(
         step_html(i + 1, t, ''.join(f'<p>{esc(nd(x) if k == len(ps) - 1 else x)}</p>' for ps in [d if isinstance(d, list) else [d] if d else []] for k, x in enumerate(ps)))
         for i, (t, d) in enumerate(c["steps"]))
-    extra = f'<p style="margin-top:18px">{esc(c["extra"])}</p>' if c.get("extra") else ""
     ctx = c["context"] if isinstance(c["context"], list) else [c["context"]]
     ctx_html = "\n".join(f'    <p>{esc(t)}</p>' for t in ctx)
     steps_lead = f'    <p>{esc(c["steps_lead"])}</p>\n' if c.get("steps_lead") else ""
@@ -1231,10 +1238,6 @@ def build_case(c):
     nums_heading = "Ключевые цифры" if c.get("result_text") else "Результат"
     how_html = (f'<p class="muted" style="font-size:14.5px"><b>Как это посчитано:</b> {esc(c["how_counted"])}</p>'
                 if c.get("how_counted") else "")
-    cta_extra = ""
-    if c.get("cta_extra"):
-        label, href = c["cta_extra"]
-        cta_extra = f'<p style="margin-top:24px"><a class="btn btn-outline" href="{href}">{esc(label)} →</a></p>'
     def fig(src, cap, wide=False): return fig_html(src, cap, cap, wide)
     shot_html = ""
     if c.get("shot"):
@@ -1256,8 +1259,7 @@ def build_case(c):
 {numbers_html(c["results"])}
 {note_html}{footnote_html}    {how_html}
 {shots_result_html}
-{reviews_html}{insight_html}    {extra}
-    {cta_extra}"""
+{reviews_html}{insight_html}"""
     return case_shell(c, inner)
 
 # ─────────────────────────────── страница продукта ───────────────────────────────
@@ -1265,12 +1267,12 @@ def build_product(p):
     stages = "\n".join(step_html(i + 1, t, f'<p>{esc(nd(d))}</p>') for i, (t, d) in enumerate(p["stages"]))
     deliver = "\n".join(f'      <div class="deliver"><b>{esc(t)}</b><p>{esc(nd(d))}</p></div>' for t, d in p["deliver"])
     # все кейсы продукта (по его тегу) + выход на общий список
-    rel = "\n".join([case_tile(c, 1) for c in CASES if p["tag"] in tags_of(c)] + [cta_tile("Все кейсы", "/cases/")])
+    rel = "\n".join([case_tile(c) for c in CASES if p["tag"] in tags_of(c)] + [cta_tile("Все кейсы", "/cases/")])
     body = f"""
 <section class="product-hero">
   <div class="wrap">
     <span class="kicker">Продукт {p['num']}</span>
-    <h1>{esc(p['name'])}</h1>
+    <h1>{esc(p['h1'])}</h1>
     <p class="lead">{esc(p['lead'])}</p>
     <span class="term-chip">⏱ Порядок сроков: {esc(p['term'])}</span>
   </div>
@@ -1291,7 +1293,7 @@ def build_product(p):
     </div>
     <div class="boundary">
       <span class="mark">⇄</span>
-      <p><b>Где граница с агентством:</b> на этой странице — форматы, в которых я работаю лично. Полный продакшн силами команды — это к агентству «Без Воды»: <a class="ext" href="https://withoutwater.ru">withoutwater.ru</a>. Личный сайт продаёт непосредственную работу Виктории; агентство — работу команды.</p>
+      <p><b>Где граница с агентством:</b> на этой странице — форматы, в которых я работаю лично. Полный продакшн силами команды — это к агентству «Без Воды»: <a class="ext" href="{AGENCY_URL}">withoutwater.ru</a>. Личный сайт продаёт непосредственную работу Виктории; агентство — работу команды.</p>
     </div>
   </div>
 </section>
@@ -1304,13 +1306,13 @@ def build_product(p):
   </div>
 </section>
 """
-    path = f"/products/{p['slug']}.html"
+    path = product_path(p)
     ld = ld_script(
-        {"@type": "Service", "@id": SITE + path + "#service", "url": SITE + path, "name": p["name"],
+        {"@type": "Service", "@id": SITE + path + "#service", "url": SITE + path, "name": p["h1"],
          "serviceType": p["name"], "description": p["short"], "provider": LD_PERSON},
         ld_crumbs(("Главная", "/"), (p["name"], path)),
     )
-    return page(f"{p['name']} — Виктория Уткина", body, p["short"], depth=1, ld=ld)
+    return page(f"{p['h1']} — {AUTHOR}", body, p["short"], head=ld)
 
 # ─────────────────────────────── JS ───────────────────────────────
 SITE_JS = """// меню + фильтр кейсов + тема + reveal
@@ -1402,12 +1404,31 @@ def canonical_url(path):
         return SITE + "/" + path[:-len("index.html")]
     return SITE + "/" + path
 
-# старые адреса кейсов -> новые. Правил 301 на сервере нет, поэтому HTML-переадресация
+# Старые адреса -> новые: страница-переадресация, работает на любом хостинге.
+# Для адресов кейсов и /god/N.html в nginx стоят еще и правила 301: новый адрес сюда — правило и туда
 REDIRECTS = {
-    "avito-partnerstva": "partner-strat-session",
-    "vkusvill": "blue-ocean-retail",
-    "vkusvill-platforma": "methodology-platform-ai",
+    "cases/avito-partnerstva.html": case_path(CASE_BY_SLUG["partner-strat-session"]),
+    "cases/vkusvill.html": case_path(CASE_BY_SLUG["blue-ocean-retail"]),
+    "cases/vkusvill-platforma.html": case_path(CASE_BY_SLUG["methodology-platform-ai"]),
+    # «Личный год» переехал на lunario.online (решение 8 ноября)
+    **{f"god/{n}.html": f"https://lunario.online/god/{n}.html" for n in range(1, 10)},
+    "god/index.html": "https://lunario.online/god/",
+    # у продуктов нет своей страницы-списка: список живет на главной
+    "products/index.html": "/#products",
 }
+
+def build_legal(doc):
+    """Юридическая страница: текст документа дословно из content/legal/, оболочка общая. В поиск не идет"""
+    with open(os.path.join(ROOT, "content", "legal", doc["slug"] + ".html"), encoding="utf-8") as f:
+        text = f.read()
+    body = f"""
+<section>
+  <div class="wrap case-body">
+{text}  </div>
+</section>
+"""
+    head = f'<meta name="robots" content="noindex">\n<link rel="canonical" href="{SITE}/{doc["slug"]}">\n'
+    return page(f"{doc['title']} — {AUTHOR}", body, doc["title"], head=head)
 
 def redirect_page(new_path):
     url = new_path if new_path.startswith("http") else SITE + new_path
@@ -1426,7 +1447,11 @@ def redirect_page(new_path):
 </html>
 """
 
+WRITTEN = []  # что собрано за этот запуск
+
 def write(path, content, strip_periods=True):
+    assert path not in WRITTEN, f"два файла с одним адресом: {path}"
+    WRITTEN.append(path)
     # глобально: точка в конце буллита не нужна (кроме дословных страниц)
     if strip_periods:
         content = re.sub(r'\.(\s*</li>)', r'\1', content)
@@ -1442,30 +1467,25 @@ def write(path, content, strip_periods=True):
 
 def main():
     check_data()
-    write("index.html", build_index())
+    # страницы для поиска: они же составляют карту сайта
+    pages = {"index.html": build_index(), "cases/index.html": build_cases_hub()}
+    pages.update({case_path(c)[1:]: build_case(c) for c in CASES})
+    pages.update({product_path(p)[1:]: build_product(p) for p in PRODUCTS})
+    for path, content in pages.items():
+        write(path, content)
     write("assets/js/site.js", SITE_JS)
-    write("cases/index.html", build_cases_hub())
-    for c in CASES:
-        write(f"cases/{c['slug']}.html", build_case(c))
-    for p in PRODUCTS:
-        write(f"products/{p['slug']}.html", build_product(p))
-    # «Личный год» переехал на lunario.online (решение 8 ноября): здесь остаются переадресации
-    god_n = 0
-    for n in range(1, 10):
-        write(f"god/{n}.html", redirect_page(f"https://lunario.online/god/{n}.html"), strip_periods=False)
-        god_n += 1
-    assert not set(REDIRECTS) & set(CASE_BY_SLUG), "старый адрес совпадает с действующим"
-    for old, new in REDIRECTS.items():
-        write(f"cases/{old}.html", redirect_page(f"/cases/{new}.html"), strip_periods=False)
-    # карта сайта: главная, кейсы, продукты. Страницы god в карту не входят: переехали на lunario.online
-    urls = ["/", "/cases/"] + [f"/cases/{c['slug']}.html" for c in CASES] + [f"/products/{p['slug']}.html" for p in PRODUCTS]
+    # служебные страницы, в карту сайта не входят; текст документов дословный — точки не трогаем
+    for doc in LEGAL:
+        write(doc["slug"] + ".html", build_legal(doc), strip_periods=False)
+    for path, target in REDIRECTS.items():
+        write(path, redirect_page(target), strip_periods=False)
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-               + "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{page_lastmod((u + 'index.html' if u.endswith('/') else u).lstrip('/'))}</lastmod></url>\n" for u in urls)
+               + "".join(f"  <url><loc>{canonical_url(path)}</loc><lastmod>{page_lastmod(path)}</lastmod></url>\n" for path in pages)
                + "</urlset>\n")
     write("sitemap.xml", sitemap, strip_periods=False)
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", strip_periods=False)
-    print("Готово:", 3 + len(CASES) + len(PRODUCTS) + god_n, "файлов, переадресаций:", len(REDIRECTS) + god_n, "карта сайта:", len(urls), "адресов")
+    print("Готово: файлов", len(WRITTEN), "| страниц в карте сайта:", len(pages), "| переадресаций:", len(REDIRECTS))
 
 if __name__ == "__main__":
     main()
