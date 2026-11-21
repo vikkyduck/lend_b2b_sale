@@ -83,6 +83,7 @@ h2{font-size:clamp(26px,3.6vw,40px);margin-bottom:26px}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:600;color:var(--ink);transition:.15s}
 .chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);text-decoration:none}
 .hero-figure{position:relative;height:200px}
+.hero-figure picture{display:contents}
 .hero-figure img{height:100%;width:auto;margin:0 auto;
   -webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent 100%);mask-image:linear-gradient(to bottom,#000 70%,transparent 100%)}
 

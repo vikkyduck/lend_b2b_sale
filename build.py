@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """Генератор статического сайта vi-utkina.ru (хаб по ТЗ)."""
-import os, html, re, hashlib
+import os, html, re, hashlib, json, subprocess, datetime
+from urllib.parse import urljoin
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TG_CHANNEL = "https://telegram.me/profi_rulit"
@@ -727,7 +728,25 @@ def shots_grid(items):
     """Скриншоты сеткой в 2 колонки: (src, подпись[, wide])."""
     return '\n    <div class="shots">\n' + "\n".join(fig_html(src, cap, cap, *wide) for src, cap, *wide in items) + '\n    </div>'
 
-def page(title, body, desc="", depth=0):
+# ─────────────── разметка schema.org (JSON-LD): только то, что видно на странице ───────────────
+SITE = "https://vi-utkina.ru"
+LD_PERSON = {"@id": SITE + "/#person"}
+LD_SITE = {"@id": SITE + "/#website"}
+
+def ld_script(*nodes):
+    """Блок JSON-LD для <head>"""
+    data = {"@context": "https://schema.org", "@graph": list(nodes)}
+    return ('<script type="application/ld+json">'
+            + json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+            + '</script>\n')
+
+def ld_crumbs(*items):
+    """Цепочка разделов до страницы: (название, путь от корня)"""
+    return {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "name": name, "item": SITE + path}
+        for i, (name, path) in enumerate(items)]}
+
+def page(title, body, desc="", depth=0, ld=""):
     pref = "../" * depth
     return f"""<!DOCTYPE html>
 <html lang="ru">
@@ -739,8 +758,11 @@ def page(title, body, desc="", depth=0):
 <meta name="description" content="{esc(desc)}">
 <link href="/assets/fonts/montserrat.css" rel="stylesheet">
 <link rel="stylesheet" href="{pref}assets/css/style.css?v={ASSET_VER}">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%235b4dff'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='800' fill='white' text-anchor='middle'%3EВУ%3C/text%3E%3C/svg%3E">
-</head>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-120.png" type="image/png" sizes="120x120">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+{ld}</head>
 <body>
 <header class="site-header">
   <div class="wrap">
@@ -807,7 +829,10 @@ def build_index():
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-figure">
-      <img src="assets/img/vika-figure.png" alt="Виктория Уткина">
+      <picture>
+        <source srcset="assets/img/vika-figure.webp" type="image/webp">
+        <img src="assets/img/vika-figure.png" alt="Виктория Уткина" width="1151" height="1280">
+      </picture>
     </div>
     <div>
       <h1 class="hero-role"><span class="role-for">Собственникам и <span style="white-space:nowrap">топ-командам:</span></span> инструменты для повышения скорости принятия решений и их точности</h1>
@@ -986,8 +1011,20 @@ def build_index():
 </section>
 
 """
-    return page("Виктория Уткина — официальная страница", body,
-                "Стратегические сессии, ИИ-инструменты и обучение лидеров — для собственников и топ-команд.", depth=0)
+    desc = "Стратегические сессии, ИИ-инструменты и обучение лидеров — для собственников и топ-команд."
+    # разметка повторяет блоки «Обо мне», «Цифровой след» и «Книга»: при правке этих блоков поправить и здесь
+    ld = ld_script(
+        {"@type": "WebSite", **LD_SITE, "url": SITE + "/", "name": "Виктория Уткина", "description": desc,
+         "inLanguage": "ru", "publisher": LD_PERSON},
+        {"@type": "Person", **LD_PERSON, "name": "Виктория Уткина", "url": SITE + "/",
+         "image": SITE + "/assets/img/vika-photo.jpg",
+         "jobTitle": "Владелица агентства «Без Воды»",
+         "worksFor": {"@type": "Organization", "name": "Без Воды", "url": "https://withoutwater.ru"},
+         "sameAs": [TG_CHANNEL] + re.findall(r'href="(https://whiteconf\.ru/[^"]+)"', body)},
+        {"@type": "Book", "name": "Эксперт под ключ: как извлечь и упаковать знания для бизнеса",
+         "author": LD_PERSON, "url": LITRES, "datePublished": "2025", "inLanguage": "ru"},
+    )
+    return page("Виктория Уткина — официальная страница", body, desc, depth=0, ld=ld)
 
 # ─────────────────────────────── /cases ───────────────────────────────
 def build_cases_hub():
@@ -1017,7 +1054,12 @@ def build_cases_hub():
   </div>
 </section>
 """
-    return page("Кейсы — Виктория Уткина", body, "Кейсы: стратегические сессии, ИИ-инструменты, обучение лидеров.", depth=1)
+    ld = ld_script(
+        {"@type": "CollectionPage", "@id": SITE + "/cases/", "url": SITE + "/cases/", "name": "Кейсы",
+         "isPartOf": LD_SITE, "about": LD_PERSON, "inLanguage": "ru"},
+        ld_crumbs(("Главная", "/"), ("Кейсы", "/cases/")),
+    )
+    return page("Кейсы — Виктория Уткина", body, "Кейсы: стратегические сессии, ИИ-инструменты, обучение лидеров.", depth=1, ld=ld)
 
 # ─────────── кейс из блоков: своя последовательность секций (длинные кейсы) ───────────
 def _block_items(items):
@@ -1137,7 +1179,15 @@ def case_shell(c, inner):
   </div>
 </section>
 """
-    return page(f"{c['client']} — кейс — Виктория Уткина", body, c["task"], depth=1)
+    path = f"/cases/{c['slug']}.html"
+    article = {"@type": "Article", "@id": SITE + path + "#article", "url": SITE + path, "mainEntityOfPage": SITE + path,
+               "headline": c.get("h1") or c["task"], "description": c["task"],
+               "author": LD_PERSON, "publisher": LD_PERSON, "isPartOf": LD_SITE, "inLanguage": "ru"}
+    first_img = re.search(r'<img[^>]+src="([^"]+)"', inner)  # первая иллюстрация кейса, если есть
+    if first_img:
+        article["image"] = urljoin(SITE + path, first_img.group(1))
+    ld = ld_script(article, ld_crumbs(("Главная", "/"), ("Кейсы", "/cases/"), (c["client"], path)))
+    return page(f"{c['client']} — кейс — Виктория Уткина", body, c["task"], depth=1, ld=ld)
 
 # ─────────────────────────────── страница кейса ───────────────────────────────
 def build_case(c):
@@ -1254,7 +1304,13 @@ def build_product(p):
   </div>
 </section>
 """
-    return page(f"{p['name']} — Виктория Уткина", body, p["short"], depth=1)
+    path = f"/products/{p['slug']}.html"
+    ld = ld_script(
+        {"@type": "Service", "@id": SITE + path + "#service", "url": SITE + path, "name": p["name"],
+         "serviceType": p["name"], "description": p["short"], "provider": LD_PERSON},
+        ld_crumbs(("Главная", "/"), (p["name"], path)),
+    )
+    return page(f"{p['name']} — Виктория Уткина", body, p["short"], depth=1, ld=ld)
 
 # ─────────────────────────────── JS ───────────────────────────────
 SITE_JS = """// меню + фильтр кейсов + тема + reveal
@@ -1326,7 +1382,17 @@ with open(os.path.join(ROOT, "assets", "css", "style.css"), "rb") as _css:
     ASSET_VER = hashlib.sha1(_css.read() + SITE_JS.encode("utf-8")).hexdigest()[:10]
 
 # ─────────────────────────────── сборка ───────────────────────────────
-SITE = "https://vi-utkina.ru"
+def page_lastmod(path):
+    """Дата изменения страницы для карты сайта: дата последнего коммита файла, а если файл с тех пор изменен — сегодня"""
+    today = datetime.date.today().isoformat()
+    def git(*args):
+        return subprocess.run(["git", *args, "--", path], cwd=ROOT, capture_output=True, text=True)
+    try:
+        if git("ls-files", "--error-unmatch").returncode != 0 or git("diff", "--quiet", "HEAD").returncode != 0:
+            return today
+        return git("log", "-1", "--format=%cs").stdout.strip() or today
+    except OSError:
+        return today
 
 def canonical_url(path):
     """Основной адрес страницы: сайт отдает одну страницу по нескольким адресам (с .html и без)"""
@@ -1395,7 +1461,7 @@ def main():
     urls = ["/", "/cases/"] + [f"/cases/{c['slug']}.html" for c in CASES] + [f"/products/{p['slug']}.html" for p in PRODUCTS]
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-               + "".join(f"  <url><loc>{SITE}{u}</loc></url>\n" for u in urls)
+               + "".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{page_lastmod((u + 'index.html' if u.endswith('/') else u).lstrip('/'))}</lastmod></url>\n" for u in urls)
                + "</urlset>\n")
     write("sitemap.xml", sitemap, strip_periods=False)
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", strip_periods=False)
